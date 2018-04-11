@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bridgeit.todo.notes.model.Notes;
 import com.bridgeit.todo.notes.service.INoteService;
 import com.bridgeit.todo.user.model.User;
+import com.bridgeit.todo.util.Token;
 
 @RestController
 public class NoteController {
@@ -29,9 +30,11 @@ public class NoteController {
 	public ResponseEntity<String> creatNotes(@RequestBody Notes notes,HttpServletRequest req){
 		
 		System.out.println("In side create Notes");
-		User user=(User) req.getSession().getAttribute("nameid");
-		System.out.println("idddd"+user.getId());
-		noteService.createNote(notes,user);
+		
+		int id = Token.getId(req.getHeader("Authorization"));
+	//	User user=(User) req.getSession().getAttribute("nameid");
+	//	System.out.println("idddd"+user.getId());
+		noteService.createNote(notes, id);
 		return new ResponseEntity<String>("Notes saved...",HttpStatus.OK);
 	}
 	
@@ -53,7 +56,7 @@ public class NoteController {
 	}
 	
 	@RequestMapping(value="/getNotes/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<Notes>> getNotes(@PathVariable("id") String id, @RequestBody Notes notes){
+	public ResponseEntity<List<Notes>> getNotes(@PathVariable("id") int id, @RequestBody Notes notes){
 		try {
 			List<Notes> notes2 = noteService.getNotes(id);
 			if (notes2.size() != 0) {

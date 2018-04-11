@@ -22,17 +22,20 @@ public class UserController {
 
 	@Autowired
 	IUserService userService;
-
 	
-		
+	@Autowired
+	UserResponse userResponse;
+	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public ResponseEntity<String> registerUser(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp) {
 		
 		System.out.println("In side register...");
 		
-		if (userService.isEmailIdPresent(user.getEmail())) {
+		if (userService.isEmailIdPresent(user.getEmail())) 
+		{
 			
 			return new ResponseEntity<String>("this email id already register...try with another",HttpStatus.CONFLICT);
+			
 			
 		} else {
 		
@@ -44,25 +47,27 @@ public class UserController {
 		//user.setName("xyz");
 
 		return new ResponseEntity<String>("User Registered..", HttpStatus.OK);
+		
 		}
 	}
 	
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ResponseEntity<String> loginUser(@RequestBody User user, HttpServletRequest request) {
+	public ResponseEntity<?> loginUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 			
 			System.out.println("In login api");
-			User user2 = userService.getUserByEmaiId(user);
 			
-			System.out.println("plainText " +user.getPassword());
-			System.out.println("hashCode " +user2.getPassword());
-
+			String token = userService.validateUser(user);
 			System.out.println("successfull");
 			
-
-		 if(user2!=null && BCrypt.checkpw(user.getPassword(), user2.getPassword()) == true)
+		 if(token!= null)
 		 {
-				return new ResponseEntity<String>("Login Successful1", HttpStatus.OK);
+			 	response.setHeader("Authorization", token);
+			 	userResponse.setStatusCode(200);
+			 	userResponse.setMessage("Login Successfull");
+			 	
+				return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);	
+				
 				
 		 }
 			
@@ -110,8 +115,7 @@ public class UserController {
 		
 		try {
 			System.out.println("In getuser");
-			User userInformtion = userService.getUserByEmaiId(user);
-			
+			User userInformtion = userService.getUserByEmaiId(user.getEmail());
 			System.out.println(userInformtion.getName()+".."+userInformtion.getEmail()+"...."+userInformtion.getPassword());
 			return new ResponseEntity<String>(HttpStatus.OK);
 			
@@ -120,21 +124,27 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/activateUser/{randomId}", method = RequestMethod.GET)
-	public ResponseEntity<Void> activate(@PathVariable("randomId") String randomId,  HttpServletRequest request,
+	@RequestMapping(value = "/activateUser/{token:.+}", method = RequestMethod.GET)
+	public ResponseEntity<Void> activate(@PathVariable("token") String token,  HttpServletRequest request,
 			HttpServletResponse response)  {
 		
-		userService.activateUser(randomId, request); 
+		userService.activateUser(token, request); 
 		return new ResponseEntity<Void>(HttpStatus.OK);
+		
 		
 	}
 	
-	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
-	public ResponseEntity<Void> forgotPassword(@RequestBody User user, HttpServletRequest request) {
+	@RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
+	public ResponseEntity<?> forgotPassword(@RequestBody User user, HttpServletRequest request) {
 		try {
-			if (userService.forgotPassword(user, request)) {
-				return new ResponseEntity<Void>(HttpStatus.OK);
+			
+			if (userService.forgotPassword(user, request) == true) 
+			{
+				userResponse.setStatusCode(200);
+				
+				return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
 			} else {
+				
 				return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 			}
 		} catch (Exception e) {
@@ -142,10 +152,13 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/resetPassword/{randomId}", method = RequestMethod.POST)
-	public ResponseEntity<Void> resetPasswowrd(@PathVariable("randomId") String randomId, HttpServletRequest request, @RequestBody User user)  {
+	@RequestMapping(value = "/resetPassword/{token:.+}", method = RequestMethod.POST)
+	public ResponseEntity<Void> resetPasswowrd(@PathVariable("token") String token, HttpServletRequest request, @RequestBody User user)  {
 		
-		userService.resetPassword(request, user, randomId);
+		String newPassword = user.getPassword();
+		System.out.println("new password: "+newPassword);
+
+		userService.resetPassword(request, newPassword, token);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 		
 	}

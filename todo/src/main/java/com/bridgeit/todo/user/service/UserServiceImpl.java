@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bridgeit.todo.user.dao.IUserDao;
 import com.bridgeit.todo.user.model.User;
 import com.bridgeit.todo.util.Mail;
+import com.bridgeit.todo.util.Token;
 import com.bridgeit.todo.util.Validation;
 
-
-//@Service
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	IUserDao userDao;
@@ -30,7 +30,6 @@ public class UserServiceImpl implements IUserService {
 	public String addUser(User user, HttpServletRequest req) {
 		System.out.println("In side add user service");
 
-		
 		String msg = Validation.userValidation(user.getName(), user.getEmail(), user.getPassword());
 
 		if (msg != null) {
@@ -38,39 +37,60 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		System.out.println("URl... " + req.getRequestURL());
-		
+
 		String hashcode = encoder.encode(user.getPassword());
 		user.setPassword(hashcode);
-		String randomID = UUID.randomUUID().toString();
-		user.setRandomId(randomID);
-		userDao.addUser(user);
-		
+		//		String randomID = UUID.randomUUID().toString();
+		//		user.setRandomId(randomID);
+		int id = userDao.addUser(user);
+		System.out.println("My id is..."+ id);
+		String token = Token.generateToken(id);
+		System.out.println("my Token.... "+token);
+
+		int id1 = Token.getId(token);
+		System.out.println("My id via JWT token..."+ id);
+
 		//user.setName("abc");
-		
+
 		String url = req.getRequestURL().toString().substring(0, req.getRequestURL().lastIndexOf("/"))
-				+ "/activateUser/" + randomID ;
+				+ "/activateUser/" + token ;
+
 
 		System.out.println("emailID.." + user.getEmail());
 		String mailTo = user.getEmail();
 		String message = url;
 		String subject = "link to activate your account";
 
-	//	Mail.sendMail(mailTo,message,subject);
+		Mail.sendMail(mailTo,message,subject);
 
 		return null;
 
 	}
 
 	@Transactional
-	public User validateUser(User user) {
-		System.out.println("In validate user");
-		return userDao.validateUser(user);
+	public String validateUser(User user) {
+
+		User user2 = userDao.getUserByEmaiId(user.getEmail());
+
+		System.out.println("plainText " +user.getPassword());
+		System.out.println("hashCode " +user2.getPassword());
+
+		if(user2!=null && BCrypt.checkpw(user.getPassword(), user2.getPassword()) == true)
+		{
+
+			//			 int id = user2.getId();
+			String token = Token.generateToken(user2.getId());
+			System.out.println("Generated token.."+token);
+
+			return token;
+		}
+		return null;	
 	}
 
 	@Transactional(propagation=Propagation.SUPPORTS)
-	public User getUserByEmaiId(User user) {
+	public User getUserByEmaiId(String email) {
 		System.out.println("service get user");
-		User userInformation = userDao.getUserByEmaiId(user);
+		User userInformation = userDao.getUserByEmaiId(email);
 		return userInformation;
 	}
 
@@ -83,65 +103,71 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	@Transactional
 	public boolean forgotPassword(User user, HttpServletRequest req) {
-		
-			User userInformation = userDao.getUserByEmaiId(user);
-			String randomId = userInformation.getRandomId();
+
+		User userInformation = userDao.getUserByEmaiId(user.getEmail());
 		
 		if(userInformation!= null) {
-			
-			String url = req.getRequestURL().toString().substring(0, req.getRequestURL().lastIndexOf("/")) + "/resetPassword/" + randomId;	
-			String mailTo = user.getEmail();
+
+			String token = Token.generateToken(userInformation.getId());
+			String url = req.getRequestURL().toString().substring(0, req.getRequestURL().lastIndexOf("/")) + "/resetPassword/" + token;	
+			String mailTo = user.getEmail();			
 			String msg = "click on given link to rest yor password "+url;
 			String subject = "reset password link";
 			Mail.sendMail(mailTo, msg, subject);
-			
+			System.out.println("in forgot");
+
+			return true;
+
 		}
-		
-				return false;
+		return false;
 	}
 
 	// Required for UPDATE
 	// Supports for READ
-	
+
 	@Transactional(propagation=Propagation.REQUIRED)
-	public String activateUser(String randomId, HttpServletRequest request) {
-		
-		User user = userDao.getUserByRandomId(randomId);
-		
+	public String activateUser(String token, HttpServletRequest request) {
+
+		//String randomId = null; 	
+		System.out.println("Token in active user "+token);
+		int id = Token.getId(token);
+		System.out.println("Id in active user "+token);
+
+		//User user = userDao.getUserByRandomId(randomId);
+		User user= userDao.getUserById(id);
+
 		System.out.println(user.getName()+"..."+user.getPassword()+"..."+user.getEmail()+"...."+user.getStatus());
 		user.setStatus(true);
 		User user2 = userDao.updateRecord(user);
-		
+
 		System.out.println(user2.getName()+"..."+user2.getPassword()+"..."+user2.getEmail()+"...."+user2.getStatus());
-		
+
 		return null;
 	}
 
 	@Transactional
-	public String resetPassword(HttpServletRequest request, User user, String randomId) {
-		
-		User user2 = userDao.getUserByRandomId(randomId);
-		String newPassword = user.getPassword();
+	public String resetPassword(HttpServletRequest request, String newPassword, String token) {
+
+		int id = Token.getId(token);
+		User user = userDao.getUserById(id);
+		//String newPassword = user.getPassword();
 		String hashCodePassword = encoder.encode(newPassword);
-		user2.setPassword(hashCodePassword);
-		userDao.updateRecord(user2);
+		user.setPassword(hashCodePassword);
+		userDao.updateRecord(user);
 		System.out.println("password reset successfully");
-				return null;
+		return null;
 	}
 
 	@Transactional
 	public boolean isEmailIdPresent(String email) {
-		
+
 		List<User> userList = userDao.checkEmailId(email);
 		if (userList.size() != 0) {
 			return true;
 		}
 		return false;
 	}
-
-	
-
-	
 
 }

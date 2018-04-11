@@ -11,8 +11,8 @@ import javax.mail.internet.MimeMessage;
 
 public class Mail {
 	
-	public static String from = "nik703.v@gmail.com";
-	public static String password = "";
+	public static String from = "nikhilvaidya.1992@gmail.com";
+	public static String password = "nikhil@1992";
     public static Properties props = new Properties();
 	public static String sendMail(String mailTo, String msg, String subject) {
 		

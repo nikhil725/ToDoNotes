@@ -7,9 +7,9 @@ import com.bridgeit.todo.user.model.User;
 
 public interface INoteService {
 
-	public int createNote(Notes notes,User user);
+	public int createNote(Notes notes, int id);
 	public void updateNote(Notes notes, int id);
 	public int deleteNote(int id);
-	List<Notes> getNotes(String email);
+	List<Notes> getNotes(int id);
 	
 }

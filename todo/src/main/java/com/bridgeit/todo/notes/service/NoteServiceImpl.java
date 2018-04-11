@@ -1,5 +1,6 @@
 package com.bridgeit.todo.notes.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,14 +13,18 @@ import com.bridgeit.todo.user.dao.IUserDao;
 import com.bridgeit.todo.user.model.User;
 
 public class NoteServiceImpl implements INoteService{
-
+	
 	@Autowired
 	INoteDao noteDao;
 	
 	@Autowired
 	IUserDao userDao;
+	
 	@Transactional
-	public int createNote(Notes notes,User user) {
+	public int createNote(Notes notes, int id) {
+		
+		User user = userDao.getUserById(id);
+		Date date = new Date();
 		
 		notes.setUser(user);
 		noteDao.addNotes(notes);
@@ -42,7 +47,7 @@ public class NoteServiceImpl implements INoteService{
 	}
 
 	@Transactional
-	public List<Notes> getNotes(String id) {
+	public List<Notes> getNotes(int id) {
 		
 		User user = userDao.getUserById(id);
 		return noteDao.getNotes(user);

@@ -23,16 +23,16 @@ public class UserDaoImpl implements IUserDao {
 	@Autowired
 	private SessionFactory mySessionFactory;
 
-	public User addUser(User user) {
+	public int addUser(User user) {
 		System.out.println("In side add user dao");
 		Session session = mySessionFactory.getCurrentSession();
 		// user's state - transient
-		Serializable sz = session.save(user);
+		int id  = (Integer)session.save(user);
 		
 		// user's state - persistent
-		System.out.println(sz.toString());
 		
-		return user;
+		
+		return id;
 	}
 
 	public User validateUser(User user) {
@@ -51,14 +51,15 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public User getUserByEmaiId(User user) {
+	public User getUserByEmaiId(String email) {
 
-		System.out.println("id "+user.getEmail());
-		Session session = mySessionFactory.getCurrentSession();
+		System.out.println("id "+ email);
 		System.out.println("before session");
+		Session session = mySessionFactory.getCurrentSession();
+		
 		Criteria criteria = session.createCriteria(User.class);
 		
-		criteria.add(Restrictions.eq("email", user.getEmail()));
+		criteria.add(Restrictions.eq("email", email));
 		User user2 = (User) criteria.uniqueResult();
 		System.out.println("Successfull");
 
@@ -79,7 +80,7 @@ public class UserDaoImpl implements IUserDao {
 
 		System.out.println("id "+id);
 
-		Session session = mySessionFactory.openSession();
+		Session session = mySessionFactory.getCurrentSession();
 		System.out.println("after session");
 		User user = (User) session.get(User.class, id);
 		System.out.println("in dao "+user.getPassword());
