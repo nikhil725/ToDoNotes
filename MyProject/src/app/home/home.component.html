@@ -1,0 +1,36 @@
+<div style="height: 100vh;margin-top: -8px;">
+
+<mat-toolbar style="background-color:rgb(255, 187, 0);">
+
+    <div>
+       <button mat-icon-button (click)="sidenav.toggle()" href="#"> 
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+     
+  <div>
+  <span>ToDo App</span>
+ </div>
+<div>
+      <button mat-icon-button (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  <input matInput aria-label="Search" autocomplete="off" placeholder="search" value name="q" role="combobox">
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+   <mat-sidenav mode="side" #sidenav opened fxLayout="column">
+     <div fxLayout="column"> 
+       <div>
+          <a href="/home/note" mat-button>
+            <mat-icon>lightbulb_outline</mat-icon> Note</a>
+        </div>
+        <div>
+        </div>
+     </div>
+   </mat-sidenav>
+    <router-outlet></router-outlet>
+     </mat-sidenav-container>
+   <!-- <app-note></app-note>  -->
+</div>
