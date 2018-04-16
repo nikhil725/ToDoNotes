@@ -15,8 +15,8 @@ import { ReturntoSignupComponent } from './returnto-signup/returnto-signup.compo
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { NoteComponent } from './note/note.component';
-
-
+import {MatMenuModule} from '@angular/material/menu';
+import { TrashComponent } from './trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { NoteComponent } from './note/note.component';
     HomeComponent,
     ForgotComponent,
     ReturntoSignupComponent,
-    NoteComponent
+    NoteComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import { NoteComponent } from './note/note.component';
     AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   exports: [
   ],

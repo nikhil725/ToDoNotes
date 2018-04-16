@@ -9,6 +9,7 @@ line-height: 20px;
 } 
 .example-card {
   max-width: 400px;
+  height: 100px;
 }
 .full-width {
   width: 100%;

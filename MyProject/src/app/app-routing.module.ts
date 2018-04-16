@@ -6,11 +6,14 @@ import { HomeComponent } from './home/home.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ReturntoSignupComponent } from './returnto-signup/returnto-signup.component';
 import { NoteComponent } from './note/note.component';
+import { TrashComponent } from './trash/trash.component';
+
 
 
 // redirectTo will redirect the first page to login page by default
 // path :'login' will redirect to LoginComponent in login.component.ts file.
 // path : 'register' will redirect to RegisterComponent to register.component.ts file.
+
 const routes: Routes = [
 {path : '' , redirectTo : 'login', pathMatch : 'full'},
 {path : 'login' , component : LoginComponent},
@@ -18,8 +21,8 @@ const routes: Routes = [
 {path : 'home', component : HomeComponent,
 children : [
 {path : '' , redirectTo : 'note', pathMatch : 'full'},
-{path : 'note', component : NoteComponent}
-
+{path : 'note', component : NoteComponent},
+{path : 'trash', component : TrashComponent}
 ]
 },
 {path : 'forgot', component : ForgotComponent},

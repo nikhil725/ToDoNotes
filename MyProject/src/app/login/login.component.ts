@@ -24,21 +24,23 @@ export class LoginComponent implements OnInit {
   login(){
    
     console.log(this.model);
-    this.userService.registerUser('login',this.model).subscribe(res=>{
+    this.userService.postService('login',this.model).subscribe(response=>{
+    console.log(this.model);
 
 
-      if(res.statusCode === 200){
+      if(response.status === 200){
 
         console.log("in login");
-        console.log('auth',res.headers.get("Authorization"));
-        localStorage.setItem('Authorization',res.headers.get("Authorization"));
+        console.log('auth',response);
+        localStorage.setItem('Authorization', response.headers.get("Authorization"))
         this.router.navigate(['/home/note']);
       }
-      else{if (res.status !== 200) {
-        alert(res.message);
+      else{if (response.status !== 200) {
+        alert(response.message);
         console.log("Invalid Password or email")
       }   
-        
+            console.log(this.model);
+
       }
     })
     
