@@ -29,6 +29,8 @@ public class NoteDaoImpl implements INoteDao{
 
 	public void updateNote(Notes notes, int id) {
 
+		System.out.println("ID in dao: "+id);
+		
 		Session session = mySessionFactory.getCurrentSession();
 		session.update(notes);
 		/*Query query = (Query) session.createQuery("update Notes set Title =:title, Description =:description, Trash =:trash where id = :id");

@@ -36,7 +36,9 @@ public class NoteServiceImpl implements INoteService{
 
 	@Transactional
 	public void updateNote(Notes notes, int id) {
-		
+		//get user from user table
+		User user = userDao.getUserById(id);
+		notes.setUser(user);
 		noteDao.updateNote(notes, id);
 						
 	}

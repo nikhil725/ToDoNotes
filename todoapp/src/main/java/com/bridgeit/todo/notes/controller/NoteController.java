@@ -48,15 +48,17 @@ public class NoteController {
 		System.out.println(notes.getDescription()+"....."+notes.getTitle()+"....."+notes.getTrash());
 
 		int id = Token.getId(request.getHeader("Authorization"));
+		System.out.println("ID is: "+id);
 		noteService.updateNote(notes, id);
 		System.out.println("id is"+id);
 		return new ResponseEntity<String>("Notes updated...",HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value="/deleteNotes/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteNotes(@PathVariable("id") int id, @RequestBody Notes notes){
-
+	@RequestMapping(value="/deleteNotes", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteNotes(@RequestBody Notes notes){
+		
+		int id = notes.getNoteId();
 		noteService.deleteNote(id);	
 		return new ResponseEntity<String>("Notes deleted...",HttpStatus.OK);
 

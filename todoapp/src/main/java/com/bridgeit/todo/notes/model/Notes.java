@@ -27,14 +27,34 @@ public class Notes {
 	private String description;
 	
 	@Column(name="Trash")
-	private Boolean trash;
+	private Boolean trash = false;
+	
+	@Column(name="Archive")
+	private Boolean archive = false;
+	
+	@Column(name="Pin")
+	private Boolean pin = false;
 	
 	@ManyToOne
 	@JoinColumn(name="id")
 	private User user;
 
-	
-	
+	public Boolean getArchive() {
+		return archive;
+	}
+
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
+	}
+
+	public Boolean getPin() {
+		return pin;
+	}
+
+	public void setPin(Boolean pin) {
+		this.pin = pin;
+	}
+
 	public Boolean getTrash() {
 		return trash;
 	}
