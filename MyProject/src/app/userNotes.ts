@@ -4,4 +4,6 @@ export class UserNotes {
     title: string;
     discription: string;
     trash: boolean;
+    archive: boolean;
+    pin : boolean;
 }

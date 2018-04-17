@@ -45,10 +45,10 @@ export class UserService {
     console.log(this.httpOptions);
     return this.http.get<UserNotes[]>(this.urlpath,this.httpOptions);   
   }
-  deleteService(path): Observable<any>{
+  deleteService(path,note): Observable<any>{
 
-    this.urlpath = this.rootUrl.concat(path);
-    return 
+    this.urlpath = this.rootUrl.concat(path,note);
+    return this.http.delete<any>(this.urlpath, note)
   }
 
   putService(path, note): Observable<any>{
@@ -57,7 +57,5 @@ export class UserService {
     return this.http.put(this.urlpath, note , this.httpOptions);
 
   }
-  loginUser(){
-    
-  }
+  
 }

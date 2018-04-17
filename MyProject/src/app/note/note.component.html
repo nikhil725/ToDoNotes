@@ -21,25 +21,10 @@
 
 </div>
 
-<!-- <div class="class-container" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
-    <div *ngFor="let note of notes">
-      
-      <mat-card-header>
-              <b>{{note.title}}</b>
-            </mat-card-header>
-
-            <mat-card-content>
-              {{note.description}}
-            </mat-card-content>
-    </div>
-  </div>
-</div> -->
-
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
     <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes">
-      <div *ngIf="note.trash=== false">
+      <div *ngIf="note.trash=== false && note.archive=== false">
         <div fxLayout="row">
           <mat-card class="example-card" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
             <mat-card-header>
@@ -48,18 +33,26 @@
             <mat-card-header>
               {{note.description}}
             </mat-card-header>
+            <div fxLayout="row">
+            <div>
+              <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'archive')">
+              <mat-icon>archive</mat-icon>
+              </button>
+
+            </div>
             <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
-
+              
               <mat-menu #menu="matMenu">
 
-                <button type="submit" mat-menu-item (click)="updateNote(note,'true')">
+                <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')">
                   <mat-icon>delete</mat-icon>
                   <span>delete note</span>
                 </button>
               </mat-menu>
+            </div>
             </div>
           </mat-card>
         </div>

@@ -5,7 +5,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { FormsModule} from '@angular/forms'
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { UserService } from './shared/user.service';
+import { UserService} from './shared/user.service';
+import {NoteService} from './shared/note.service' ;
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule,MatFormFieldModule,MatInputModule,MatButtonModule,MatIconModule} from '@angular/material';
 import {AppRoutingModule} from './app-routing.module';
@@ -17,6 +18,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { NoteComponent } from './note/note.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { TrashComponent } from './trash/trash.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { TrashComponent } from './trash/trash.component';
     ForgotComponent,
     ReturntoSignupComponent,
     NoteComponent,
-    TrashComponent
+    TrashComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { TrashComponent } from './trash/trash.component';
   ],
   exports: [
   ],
-  providers: [UserService],
+  providers: [UserService,NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

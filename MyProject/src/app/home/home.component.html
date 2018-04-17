@@ -23,12 +23,16 @@
    <mat-sidenav mode="side" #sidenav opened fxLayout="column">
      <div fxLayout="column"> 
        <div>
-          <a href="/home/note" mat-button>
-            <mat-icon>lightbulb_outline</mat-icon> Note</a>
+          <a routerLink="/home/note" routerLinkActive="mat-primary" mat-button>
+          <mat-icon>lightbulb_outline</mat-icon> Note</a>
         </div>
         <div>
-          <a href="/home/trash" mat-button>
+          <a routerLink="/home/trash" routerLinkActive="mat-primary" mat-button>
           <mat-icon>delete</mat-icon> Trash </a>
+        </div>
+        <div>
+          <a routerLink="/home/archive" routerLinkActive="mat-primary" mat-button>
+          <mat-icon>archive</mat-icon> Archive </a>
         </div>
      </div>
    </mat-sidenav>
