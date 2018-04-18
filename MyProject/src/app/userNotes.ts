@@ -6,4 +6,5 @@ export class UserNotes {
     trash: boolean;
     archive: boolean;
     pin : boolean;
+    color : string;
 }

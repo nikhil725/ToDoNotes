@@ -10,7 +10,7 @@ public interface INoteService {
 
 	public int createNote(Notes notes, int id);
 	public void updateNote(Notes notes, int id);
-	public int deleteNote(int id);
+	public int deleteNote(int noteId);
 	List<NoteRes> getNotes(int id);
 	
 }

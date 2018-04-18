@@ -44,8 +44,20 @@ public class NoteServiceImpl implements INoteService{
 	}
 
 	@Transactional
-	public int deleteNote(int id) {			
-		noteDao.deleteNote(id);
+	public int deleteNote(int noteId) {	
+		
+		
+		
+		//Note note=noteDao.getnoteByNoteId();
+		//if(note.user.id!=userid){
+		// 
+		//}
+		
+//			Notes notes = (Notes) noteDao.getNotesbyId(noteId);
+//			if(notes.getUser().getId()!=userId) {
+//				System.out.println("Unauthorization token");
+//			}
+		noteDao.deleteNote(noteId);
 		return 0;
 				
 	}

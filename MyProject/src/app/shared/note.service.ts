@@ -16,9 +16,9 @@ createNotes(note) :Observable<any>{
 return this.userService.registerUser('createNotes', note);
 }
 
-deleteNote(note) :Observable<any>{
+deleteNote(noteId) :Observable<any>{
 
-    return this.userService.deleteService('deleteNotes',note);
+    return this.userService.deleteService('deleteNotes/'+noteId);
 
 }
 
@@ -41,9 +41,21 @@ updateNotes(note,status,field):Observable<any>{
 
     console.log("successfull", response);
  });
-  }
-return this.userService.putService('updatenotes',note);
+  }else if(field == 'color'){
+
+    this.userService.putService('updateNotes',note).subscribe(response =>{
+      console.log("successfull", response);
+    });
+  }else if(field == 'pin'){
+    note.pin = status;
+    note.archive = 'false';
+    note.trash = 'false';
+    this.userService.putService('updateNotes',note).subscribe(response =>{
+      console.log("successfull", response);
+  });
+
 }
 
-
+return this.userService.putService('updatenotes',note);
+}
 }

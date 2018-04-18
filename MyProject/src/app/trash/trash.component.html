@@ -15,11 +15,11 @@
 
               <mat-menu #menu="matMenu">
 
-                <button type="submit" mat-menu-item (click)="deleteNote(note)">
+                <button type="submit" mat-menu-item (click)="deleteNote(note.noteId)">
               <span>Delete Forever</span>
               </button>
 
-            <button type="submit" mat-menu-item>
+            <button type="submit" mat-menu-item (click)="restoreNotes(note,'false','trash')">
 
             <span>Restore</span>
             </button>

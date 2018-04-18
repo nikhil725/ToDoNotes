@@ -24,7 +24,7 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/note/**"/>
 			<bean class="com.bridgeit.todo.util.LoggingInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -24,11 +24,21 @@ export class TrashComponent implements OnInit {
   });
   }
 
-  deleteNote(note){
+  deleteNote(noteId){
 
-    this.noteService.deleteNote(note).subscribe(response =>{
+    this.noteService.deleteNote(noteId).subscribe(response =>{
 
-      console.log(note);
+      console.log(noteId);
     });
+  }
+
+  restoreNotes(note,status,field){
+
+    this.noteService.updateNotes(note,status,field).subscribe(response =>{
+
+        console.log('record update', response);
+    });
+
+
   }
 }

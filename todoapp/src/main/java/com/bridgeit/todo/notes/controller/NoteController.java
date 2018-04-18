@@ -46,7 +46,7 @@ public class NoteController {
 			 request){
 		
 		System.out.println(notes.getDescription()+"....."+notes.getTitle()+"....."+notes.getTrash());
-
+		
 		int id = Token.getId(request.getHeader("Authorization"));
 		System.out.println("ID is: "+id);
 		noteService.updateNote(notes, id);
@@ -55,11 +55,15 @@ public class NoteController {
 
 	}
 
-	@RequestMapping(value="/deleteNotes", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteNotes(@RequestBody Notes notes){
+	@RequestMapping(value="deleteNotes/{noteId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> deleteNotes(@PathVariable int noteId, HttpServletRequest req){
 		
-		int id = notes.getNoteId();
-		noteService.deleteNote(id);	
+		
+	//	int userId=(int) req.getAttribute("Authorization");
+	//	System.out.println("userId "+userId);
+		int userId = Token.getId(req.getHeader("Authorization"));
+		System.out.println("user ID : "+userId);
+		noteService.deleteNote(noteId);	
 		return new ResponseEntity<String>("Notes deleted...",HttpStatus.OK);
 
 	}

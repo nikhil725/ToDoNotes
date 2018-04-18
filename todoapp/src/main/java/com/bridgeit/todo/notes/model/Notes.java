@@ -35,9 +35,20 @@ public class Notes {
 	@Column(name="Pin")
 	private Boolean pin = false;
 	
+	@Column
+	private String color;
+	
 	@ManyToOne
 	@JoinColumn(name="id")
 	private User user;
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	public Boolean getArchive() {
 		return archive;

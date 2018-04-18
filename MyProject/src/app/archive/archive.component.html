@@ -1,7 +1,7 @@
 <div  fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes" >
      <div *ngIf="note.archive=== true"> 
     <div fxLayout="row wrap">
-    <mat-card class="example-card" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+    <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
       <mat-card-header>
         <b>{{note.title}}</b>
       </mat-card-header>
@@ -15,6 +15,20 @@
               </button>
 
             </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <mat-menu #color="matMenu">
+                <div>
+                  <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+                </div>
+              </mat-menu>
+            </div>
+
+            <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -31,6 +45,7 @@
             </button>
             </mat-menu>
          </div>
+       </div>
     </mat-card>
      </div> 
     </div>

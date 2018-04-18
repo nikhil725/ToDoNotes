@@ -8,6 +8,7 @@ public class NoteRes {
 	private Boolean trash;
 	private Boolean archive;
 	private Boolean pin;
+	private String color;
 
 	public NoteRes(Notes object) {
 		
@@ -17,6 +18,7 @@ public class NoteRes {
 		this.trash = object.getTrash();
 		this.archive = object.getArchive();
 		this.pin = object.getPin();
+		this.color = object.getColor();
 	}
 	
 	
@@ -55,6 +57,12 @@ public class NoteRes {
 	}
 	public void setPin(Boolean pin) {
 		this.pin = pin;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 

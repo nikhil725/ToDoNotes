@@ -68,7 +68,6 @@ public class NoteDaoImpl implements INoteDao{
 		Criteria criteria  = session.createCriteria(Notes.class);
 		criteria.add(Restrictions.eq("user", user)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		System.out.println("print list");
-		@SuppressWarnings("unchecked")
 		List<Notes> notes = criteria.list();
 		System.out.println("print list");
 	

@@ -21,12 +21,19 @@
 
 </div>
 
+
+<!-- padding -->
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
     <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes">
-      <div *ngIf="note.trash=== false && note.archive=== false">
-        <div fxLayout="row">
-          <mat-card class="example-card" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+      <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false">
+       
+        <div fxLayout="row" >
+          <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+
+            <div style="margin-left: 90%;">
+            <img src="{{unpinSvg}}" (click)="updateNote(note,'true','pin')">
+          </div>
             <mat-card-header>
               <b>{{note.title}}</b>
             </mat-card-header>
@@ -34,13 +41,21 @@
               {{note.description}}
             </mat-card-header>
             <div fxLayout="row">
-            <div>
-              <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'archive')">
+            
+              <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
               <mat-icon>archive</mat-icon>
               </button>
 
-            </div>
-            <div>
+               <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <mat-menu #color="matMenu">
+                <div>
+                  <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+                </div>
+              </mat-menu>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -53,6 +68,63 @@
                 </button>
               </mat-menu>
             </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-------------------- note div ------------------>
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes">
+      <div *ngIf="note.trash=== false && note.archive=== false">
+        <div fxLayout="row" >
+          <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+
+            <div style="margin-left: 90%;">
+            <img src="{{pinSvg}}" (click)="updateNote(note,'true','pin')">
+          </div>
+            <mat-card-header>
+              <b>{{note.title}}</b>
+            </mat-card-header>
+            <mat-card-header>
+              {{note.description}}
+            </mat-card-header>
+            <div fxLayout="row">
+            
+              <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
+              <mat-icon>archive</mat-icon>
+              </button>
+
+            
+            
+               <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <mat-menu #color="matMenu">
+                <div>
+                  <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+                </div>
+              </mat-menu>
+
+
+            
+            
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              
+              <mat-menu #menu="matMenu">
+
+                <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')">
+                  <mat-icon>delete</mat-icon>
+                  <span>delete note</span>
+                </button>
+              </mat-menu>
+            
             </div>
           </mat-card>
         </div>

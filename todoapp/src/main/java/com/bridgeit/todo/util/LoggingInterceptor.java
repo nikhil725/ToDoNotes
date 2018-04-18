@@ -23,13 +23,13 @@ public class LoggingInterceptor implements HandlerInterceptor{
 		if(!request.getMethod().equals(null)) {
 			
 			int id = Token.getId(request.getHeader("Authorization"));
-			request.setAttribute("id", id);
-			
 			User user = userService.getUserById(id);
 			
-			if(user==null) {
-				return false;
+			if(user!=null) {
+				request.setAttribute("id", id);
+				return true;
 			}
+			return false;
 		}
 	
 		return true;

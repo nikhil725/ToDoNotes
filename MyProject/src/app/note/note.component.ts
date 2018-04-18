@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import { UserNotes } from '../userNotes';
+import { ColorList } from '../colorList';
 import { NoteService } from '../shared/note.service';
 
 @Component({
@@ -14,6 +15,9 @@ export class NoteComponent implements OnInit {
 
   model : any={};
   notes : UserNotes[];
+ // colors : ColorList[];
+
+  pinSvg = '/assets/icons/pin.svg';
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
@@ -44,4 +48,39 @@ updateNote(note,status,field){
    });
 
 }
+
+colors = [{
+
+  color: '#f26f75',
+  path: '/assets/icons/Red.png'
+},
+{
+  color: '#fcff77',
+  path: '/assets/icons/lightyellow.png'
+},
+{
+  color: '#80ff80',
+  path: '/assets/icons/green.png'
+},
+{
+  color: '#9ee0ff',
+  path: '/assets/icons/blue.png'
+}, 
+{
+  color: '#9966ff',
+  path: '/assets/icons/purple.png'
+}, 
+{
+  color: '#ff99cc',
+  path: '/assets/icons/pink.png'
+}, 
+{
+  color: '#bfbfbf',
+  path: '/assets/icons/grey.png'
+}, 
+{
+  color: '#a52a2a',
+  path: '/assets/icons/brown.png'
+}
+];
 }
