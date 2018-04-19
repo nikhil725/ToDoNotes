@@ -1,26 +1,18 @@
-
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
-import { Router } from '@angular/router';
 import { UserNotes } from '../userNotes';
 import { ColorList } from '../colorList';
 import { NoteService } from '../shared/note.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.css']
+  selector: 'app-reminder',
+  templateUrl: './reminder.component.html',
+  styleUrls: ['./reminder.component.css']
 })
-export class NoteComponent implements OnInit {
+export class ReminderComponent implements OnInit {
 
-  model : any={};
-  notes : UserNotes[];
- // colors : ColorList[];
+    notes : UserNotes[];
 
-  pinSvg = '/assets/icons/pin.svg';
-  unpinSvg = '/assets/icons/unpin.svg';
-  reminderSvg = '/assets/icons/reminder.svg'
-  clearSvg = '/assets/icons/clear.svg'
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
@@ -31,28 +23,7 @@ export class NoteComponent implements OnInit {
     });
   }
 
-
-createNote(){
-
-console.log(this.model);
-    console.log("in create note");
-    this.noteService.createNotes(this.model).subscribe(response => {
-      console.log("successfull", response);
-      
-    }); 
-}
-
-updateNote(note,status,field){
-
-   console.log('notes: ',note);
-   console.log(field);
-   this.noteService.updateNotes(note,status,field).subscribe(response =>{
-     console.log("successfull", response)
-   });
-
-}
-
-reminderUpdate(note,day,field){
+  reminderUpdate(note,day,field){
     
     if(day==='Today'){
     var today =new Date();

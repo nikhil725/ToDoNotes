@@ -7,4 +7,5 @@ export class UserNotes {
     archive: boolean;
     pin : boolean;
     color : string;
+    reminder: Date;
 }

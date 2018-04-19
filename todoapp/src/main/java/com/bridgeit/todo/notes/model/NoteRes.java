@@ -1,5 +1,7 @@
 package com.bridgeit.todo.notes.model;
 
+import java.util.Date;
+
 public class NoteRes {
 
 	private int noteId;
@@ -9,6 +11,7 @@ public class NoteRes {
 	private Boolean archive;
 	private Boolean pin;
 	private String color;
+	private Date reminder;
 
 	public NoteRes(Notes object) {
 		
@@ -19,9 +22,18 @@ public class NoteRes {
 		this.archive = object.getArchive();
 		this.pin = object.getPin();
 		this.color = object.getColor();
+		this.reminder = object.getReminder();
 	}
 	
 	
+	
+	
+	public Date getReminder() {	
+		return reminder;
+	}
+	public void setReminder(Date reminder) {
+		this.reminder = reminder;
+	}
 	public int getNoteId() {
 		return noteId;
 	}

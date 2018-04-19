@@ -1,5 +1,5 @@
 <div  fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes" >
-     <div *ngIf="note.archive=== true"> 
+     <div *ngIf="note.reminder!=null"> 
     <div fxLayout="row wrap">
     <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
       <mat-card-header>

@@ -8,7 +8,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserService} from './shared/user.service';
 import {NoteService} from './shared/note.service' ;
 import { HttpClientModule } from '@angular/common/http';
-import {MatCardModule,MatFormFieldModule,MatInputModule,MatButtonModule,MatIconModule} from '@angular/material';
+import {MatCardModule,MatFormFieldModule,MatInputModule,MatButtonModule,MatIconModule,MatNativeDateModule} from '@angular/material';
 import {AppRoutingModule} from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ForgotComponent } from './forgot/forgot.component';
@@ -19,6 +19,10 @@ import { NoteComponent } from './note/note.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReminderComponent } from './reminder/reminder.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -30,12 +34,14 @@ import { ArchiveComponent } from './archive/archive.component';
     ReturntoSignupComponent,
     NoteComponent,
     TrashComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    ReminderComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    FlexLayoutModule,
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
@@ -45,7 +51,10 @@ import { ArchiveComponent } from './archive/archive.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule
   ],
   exports: [
   ],

@@ -1,5 +1,7 @@
 package com.bridgeit.todo.notes.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,10 +40,14 @@ public class Notes {
 	@Column
 	private String color;
 	
+	@Column
+	private Date reminder;
+	
 	@ManyToOne
 	@JoinColumn(name="id")
 	private User user;
 
+	
 	public String getColor() {
 		return color;
 	}
@@ -105,4 +111,13 @@ public class Notes {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Date getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(Date reminder) {
+		this.reminder = reminder;
+	}
+	
 }

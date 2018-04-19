@@ -54,7 +54,13 @@ updateNotes(note,status,field):Observable<any>{
       console.log("successfull", response);
   });
 
-}
+  }else if(field == 'reminder'){
+
+    this.userService.putService('updateNotes',note).subscribe(response =>{
+
+      console.log("successfull",response);
+    });
+  }
 
 return this.userService.putService('updatenotes',note);
 }

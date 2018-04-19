@@ -7,7 +7,8 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ReturntoSignupComponent } from './returnto-signup/returnto-signup.component';
 import { NoteComponent } from './note/note.component';
 import { TrashComponent } from './trash/trash.component';
-import {ArchiveComponent} from './archive/archive.component'
+import {ArchiveComponent} from './archive/archive.component';
+import {ReminderComponent} from './reminder/reminder.component';
 
 
 // redirectTo will redirect the first page to login page by default
@@ -24,7 +25,8 @@ const routes: Routes = [
             { path: '', redirectTo: 'note', pathMatch: 'full'},
             { path: 'note', component: NoteComponent },
             { path: 'trash', component: TrashComponent },
-            { path: 'archive', component: ArchiveComponent }
+            { path: 'archive', component: ArchiveComponent },
+            { path: 'reminder', component: ReminderComponent }
         ]
     },
     { path: 'forgot', component: ForgotComponent },
