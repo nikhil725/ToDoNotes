@@ -38,6 +38,29 @@
           <a routerLink="/home/reminder" routerLinkActive="mat-primary" mat-button>
             <img src="/assets/icons/reminder.svg"> Reminders </a>
         </div>
+
+        <div>
+          <button mat-menu-item>
+            <span>Labels</span>
+          </button>
+        </div>
+        <div *ngFor="let label of labels">
+         <div>
+            <button mat-menu-item>
+                <mat-icon>label</mat-icon>
+                <span>{{label.name}}</span>
+            </button>
+         </div>
+         </div>
+           <div>
+          <button mat-menu-item  (click)="openLabelDialog()">
+            <mat-icon>add</mat-icon>
+            <span>Create new lable</span>
+          </button>
+         </div>
+;
+
+
       </div>
     </mat-sidenav>
     <router-outlet></router-outlet>

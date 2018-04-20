@@ -44,6 +44,7 @@
 			<list>
 				<value>com.bridgeit.todo.user.model.User</value>
 				<value>com.bridgeit.todo.notes.model.Notes</value>
+				<value>com.bridgeit.todo.label.model.Label</value>
 			</list>
 		</property>
 
@@ -73,5 +74,9 @@
 	<bean id="noteDao" class="com.bridgeit.todo.notes.dao.NoteDaoImpl"></bean>
 	
 	<bean id="userResponse" class="com.bridgeit.todo.user.controller.UserResponse"></bean>
+	
+	<bean id="labelService" class="com.bridgeit.todo.label.service.LabelServiceImpl"></bean>
+	
+	<bean id="labelDao" class="com.bridgeit.todo.label.dao.LabelDaoImpl"></bean>
 
 </beans>

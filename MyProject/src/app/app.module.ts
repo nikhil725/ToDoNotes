@@ -23,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReminderComponent } from './reminder/reminder.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { LabelComponent } from './label/label.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatChipsModule} from '@angular/material/chips';
     NoteComponent,
     TrashComponent,
     ArchiveComponent,
-    ReminderComponent
+    ReminderComponent,
+    LabelComponent
   ],
   imports: [
     BrowserModule,
