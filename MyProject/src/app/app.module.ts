@@ -58,8 +58,8 @@ import { LabelComponent } from './label/label.component';
     MatNativeDateModule,
     MatChipsModule
   ],
-  exports: [
-  ],
+  exports: [],
+  entryComponents:[LabelComponent],
   providers: [UserService,NoteService],
   bootstrap: [AppComponent]
 })

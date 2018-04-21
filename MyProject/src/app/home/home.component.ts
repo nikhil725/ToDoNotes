@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LabelComponent } from '../label/label.component';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  profilePic="assets/icons/account.svg";
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openDialog(){
+this.dialog.open(LabelComponent,{
+     
+      width: '400px',
+      height: '210px'
+    });
+
+  }
 }

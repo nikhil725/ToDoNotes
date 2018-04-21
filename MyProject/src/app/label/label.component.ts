@@ -20,5 +20,5 @@ export class LabelComponent implements OnInit {
 
     this.userService.putService('createLable',this.model);
 
-  }
+  } 
 }
