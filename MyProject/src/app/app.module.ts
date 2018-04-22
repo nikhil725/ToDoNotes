@@ -24,6 +24,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReminderComponent } from './reminder/reminder.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { LabelComponent } from './label/label.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LabelComponent } from './label/label.component';
     TrashComponent,
     ArchiveComponent,
     ReminderComponent,
-    LabelComponent
+    LabelComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

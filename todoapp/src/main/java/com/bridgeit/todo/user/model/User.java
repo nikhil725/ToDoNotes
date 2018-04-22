@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.bridgeit.todo.notes.model.Notes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="User")
@@ -36,6 +37,8 @@ public class User {
 	@Column
 	private Boolean status = false;
 	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private Set<Notes> notes;
 	

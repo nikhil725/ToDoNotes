@@ -15,10 +15,12 @@ export class LabelComponent implements OnInit {
 
   ngOnInit() {
   }
+   createLabel(): void {
+    console.log(this.model);
+  this.userService.registerUser('createLabels',this.model)
+                   .subscribe(response => {
+        console.log(" response Label  Created", response);
+     });
+  };
 
-  createLabel(){
-
-    this.userService.putService('createLable',this.model);
-
-  } 
 }

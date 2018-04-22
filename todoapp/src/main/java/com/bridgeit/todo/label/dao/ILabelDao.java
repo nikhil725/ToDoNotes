@@ -8,7 +8,7 @@ import com.bridgeit.todo.user.model.User;
 public interface ILabelDao {
 
 	String createlabel(Label label);
-	public List<Label> getNotes(User user);
+	public List<Label> getLabels(User user);
 
 	
 }

@@ -1,5 +1,7 @@
 package com.bridgeit.todo.user.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +26,7 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 	
-	UserResponse res =  new UserResponse();
+	 UserResponse res =  new UserResponse();
 	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public ResponseEntity<String> registerUser(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp) {
@@ -155,6 +157,14 @@ public class UserController {
 		}
 	}
 	
+
+	@RequestMapping(value = "/resetPasswordLink/{token:.+}", method = RequestMethod.GET)
+	public ResponseEntity<Void> resetPasswordLink(@PathVariable("token") String token, HttpServletResponse response) throws IOException  {
+		
+		response.sendRedirect("http://localhost:4200/resetpassword");
+		return null;
+	}
+
 	@RequestMapping(value = "/resetPassword/{token:.+}", method = RequestMethod.POST)
 	public ResponseEntity<Void> resetPasswowrd(@PathVariable("token") String token, HttpServletRequest request, @RequestBody User user)  {
 		

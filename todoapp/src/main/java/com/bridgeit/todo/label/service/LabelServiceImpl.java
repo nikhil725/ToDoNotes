@@ -1,5 +1,6 @@
 package com.bridgeit.todo.label.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bridgeit.todo.label.dao.ILabelDao;
 import com.bridgeit.todo.label.model.Label;
+import com.bridgeit.todo.label.model.LabelRes;
+import com.bridgeit.todo.notes.model.NoteRes;
+import com.bridgeit.todo.notes.model.Notes;
 import com.bridgeit.todo.user.dao.IUserDao;
 import com.bridgeit.todo.user.model.User;
 
@@ -23,6 +27,7 @@ public class LabelServiceImpl implements ILabelService {
 	@Override
 	public String createLabel(Label label, int userId) {
 		
+		System.out.println("### Inside service####");
 		User user = userDao.getUserById(userId);
 		System.out.println("user id: "+user.getId());
 		label.setUser(user);
@@ -30,10 +35,23 @@ public class LabelServiceImpl implements ILabelService {
 		return null;	
 	}
 
+	@Transactional
 	@Override
-	public List<Label> getNotes() {
+	public List<LabelRes> getLabels(int userId) {
+	
 		
-		return null;
-	}
+		List <Label> labels = null;
+		User user = userDao.getUserById(userId);
+		
+        	labels = labelDao.getLabels(user);
+        	 List<LabelRes> labelDto = new ArrayList<LabelRes>();
+        	 for(Label object : labels) 
+    		 {
+        		 LabelRes dto = new LabelRes(object);
+        		 labelDto.add(dto);
+    		 }
+    		 return labelDto;
+    		}
+       
+     	}
 
-}

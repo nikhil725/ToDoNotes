@@ -26,8 +26,7 @@ public class LabelDaoImpl implements ILabelDao {
 	}
 
 	@Override
-	public List<Label> getNotes(User user) {
-		
+	public List<Label> getLabels(User user) {
 		Session session = mySessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Label.class);
 		criteria.add(Restrictions.eq("user", user));

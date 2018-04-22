@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LabelComponent } from '../label/label.component';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { NoteService } from '../shared/note.service';
+import{Label} from '../Label';
+
+
 
 
 @Component({
@@ -10,10 +14,20 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 })
 export class HomeComponent implements OnInit {
 
+  model : any={};
+  labels: Label[];
   profilePic="assets/icons/account.svg";
-  constructor(private dialog: MatDialog) { }
+  constructor(private noteService: NoteService, private dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log('in side home');
+  this.noteService.getLabels().subscribe(res => {
+      
+     this.labels = res;
+     console.log(this.labels);
+    });
+
+
   }
 
   openDialog(){

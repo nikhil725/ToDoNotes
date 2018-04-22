@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
 import {UserNotes } from '../userNotes';
+import{Label} from '../Label';
 
 @Injectable()
 export class NoteService {
@@ -19,6 +20,11 @@ return this.userService.registerUser('createNotes', note);
 deleteNote(noteId) :Observable<any>{
 
     return this.userService.deleteService('deleteNotes/'+noteId);
+}
+
+getLabels(): Observable<Label[]>{
+
+  return this.userService.getService('getLabels');
 
 }
 

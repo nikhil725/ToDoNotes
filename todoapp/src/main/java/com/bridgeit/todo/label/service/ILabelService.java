@@ -3,11 +3,12 @@ package com.bridgeit.todo.label.service;
 import java.util.List;
 
 import com.bridgeit.todo.label.model.Label;
+import com.bridgeit.todo.label.model.LabelRes;
 
 public interface ILabelService {
 	
 	public String createLabel(Label label, int userID);
-	public List<Label> getNotes();
+	List<LabelRes> getLabels(int userId);
 	
 	
 }

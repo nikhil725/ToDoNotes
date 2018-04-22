@@ -109,7 +109,7 @@ public class UserServiceImpl implements IUserService {
 		if(userInformation!= null) {
 
 			String token = Token.generateToken(userInformation.getId());
-			String url = req.getRequestURL().toString().substring(0, req.getRequestURL().lastIndexOf("/")) + "/resetPassword/" + token;	
+			String url = req.getRequestURL().toString().substring(0, req.getRequestURL().lastIndexOf("/")) + "/resetPasswordLink/" + token;	
 			String mailTo = user.getEmail();			
 			String msg = "click on given link to rest yor password "+url;
 			String subject = "reset password link";

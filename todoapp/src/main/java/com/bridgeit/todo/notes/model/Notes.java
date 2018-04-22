@@ -1,6 +1,7 @@
 package com.bridgeit.todo.notes.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.bridgeit.todo.label.model.Label;
 import com.bridgeit.todo.user.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Notes")
@@ -43,11 +48,25 @@ public class Notes {
 	@Column
 	private Date reminder;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id")
 	private User user;
 
+	@ManyToMany
+	@JoinTable(name ="NoteLabel", joinColumns=@JoinColumn(name="noteId"), inverseJoinColumns=@JoinColumn(name="labelId"))
+	private Set<Label> labels;
+
 	
+	
+	public Set<Label> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(Set<Label> labels) {
+		this.labels = labels;
+	}
+
 	public String getColor() {
 		return color;
 	}

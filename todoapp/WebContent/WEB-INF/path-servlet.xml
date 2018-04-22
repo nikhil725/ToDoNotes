@@ -65,7 +65,7 @@
 		
 	</bean> -->
 
-	<bean id="userService" class="com.bridgeit.todo.user.service.UserServiceImpl"></bean>
+	<bean scope="" id="userService" class="com.bridgeit.todo.user.service.UserServiceImpl"></bean>
 	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	
