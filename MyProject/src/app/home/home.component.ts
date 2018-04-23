@@ -3,6 +3,8 @@ import { LabelComponent } from '../label/label.component';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { NoteService } from '../shared/note.service';
 import{Label} from '../Label';
+import { Router } from '@angular/router';
+
 
 
 
@@ -17,7 +19,7 @@ export class HomeComponent implements OnInit {
   model : any={};
   labels: Label[];
   profilePic="assets/icons/account.svg";
-  constructor(private noteService: NoteService, private dialog: MatDialog) { }
+  constructor(private noteService: NoteService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     console.log('in side home');
@@ -37,5 +39,11 @@ this.dialog.open(LabelComponent,{
       height: '210px'
     });
 
+  }
+
+    signOut() : void{
+    
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

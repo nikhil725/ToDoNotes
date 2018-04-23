@@ -145,6 +145,7 @@ public class UserServiceImpl implements IUserService {
 		return null;
 	}
 
+	
 	@Transactional
 	public String resetPassword(HttpServletRequest request, String newPassword, String token) {
 

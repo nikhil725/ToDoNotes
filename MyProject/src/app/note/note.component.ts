@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UserNotes } from '../userNotes';
 import { ColorList } from '../colorList';
 import { NoteService } from '../shared/note.service';
+import{Label} from '../Label';
+
 
 @Component({
   selector: 'app-note',
@@ -14,6 +16,8 @@ import { NoteService } from '../shared/note.service';
 export class NoteComponent implements OnInit {
 
   model : any={};
+    labels: Label[];
+
   notes : UserNotes[];
  // colors : ColorList[];
 

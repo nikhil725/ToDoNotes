@@ -18,6 +18,4 @@ public class UserResponse {
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
-	
-	
 }

@@ -17,14 +17,21 @@
       </button>
     </div>
     <input matInput aria-label="Search" autocomplete="off" placeholder="search" value name="q" role="combobox">
-    
-    <!-- <mat-menu #login="matMenu">
+
+
+        <div class="login-design">
+      <button mat-icon-button [matMenuTriggerFor]="login">
+        
+                <img src="/assets/icons/account.svg">
+              </button>
+    </div>
+    <mat-menu #login="matMenu">
       <div fxLayout="column" fxLayoutGap="20px">
         <div fxLayout="row" fxLayoutGap="30px">
           <div>
 
-            <div  class="example-header-image"></div>
-            
+            <div class="example-header-image"></div>
+
           </div>
 
           <div>
@@ -42,6 +49,7 @@
             </div>
 
           </div>
+
         </div>
         <div fxLayout="row" fxLayoutGap="70px" class="rowDesign">
           <div>
@@ -52,7 +60,7 @@
           </div>
         </div>
       </div>
-    </mat-menu> -->
+    </mat-menu>
 
 
   </mat-toolbar>
@@ -83,20 +91,20 @@
           </button>
         </div>
         <div *ngFor="let label of labels">
-         <div>
+          <div>
             <button mat-menu-item>
                 <mat-icon>label</mat-icon>
                 <span>{{label.name}}</span>
             </button>
-         </div>
-         </div>
-           <div>
-          <button mat-menu-item  (click)="openDialog()">
+          </div>
+        </div>
+        <div>
+          <button mat-menu-item (click)="openDialog()">
             <mat-icon>add</mat-icon>
             <span>Create new lable</span>
           </button>
-         </div>
-;
+        </div>
+        ;
 
 
       </div>

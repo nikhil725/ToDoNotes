@@ -25,6 +25,7 @@ import { ReminderComponent } from './reminder/reminder.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { LabelComponent } from './label/label.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { AuthGuard,LoggedInAuthGuard } from './auth/index';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
   ],
   exports: [],
   entryComponents:[LabelComponent],
-  providers: [UserService,NoteService],
+  providers: [UserService,NoteService,AuthGuard,LoggedInAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
