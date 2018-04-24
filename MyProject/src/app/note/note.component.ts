@@ -124,4 +124,19 @@ colors = [{
   path: '/assets/icons/brown.png'
 }
 ];
+
+getLabels(){
+  this.noteService.getLabels().subscribe(res => {
+      
+     this.labels = res;
+     console.log(this.labels);
+    });
+}
+
+addLabelOnNote(operation,noteId,labelId){
+
+  this.noteService.addLabelOnNote(operation,noteId,labelId);
+  console.log(operation,noteId,labelId);
+  
+  }
 }

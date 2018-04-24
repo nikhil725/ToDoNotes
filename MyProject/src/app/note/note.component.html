@@ -256,32 +256,102 @@
                   <span>delete note</span> 
                 </button>
                   <!-- change label tag -->
-                   <button type="submit" mat-menu-item [matMenuTriggerFor]="label" > 
-                  <!-- <button mat-icon-button [matMenuTriggerFor]="changeLabels"> -->
+                  <div>
+                  <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getLabels()"> 
                   <span>change label</span>
                   </button>
+                  </div>
                   <mat-menu #label="matMenu">
+
                     <div fxLayout="column" fxLayoutGap="20px">
-                    <div>
+                      <div>
                         <b>label note</b>
-                      </div>  
+                      </div>
                       <div>
                         <mat-form-field>
-                        <input matInput placeholder="Search name">
+                          <input matInput placeholder="Search name">
                         </mat-form-field>
                       </div>
+                       <div *ngIf="labels!=null">
+                      <div *ngFor="let label of labels">
+                      <label>
+                            <input type="checkbox" 
+                             name="labels" 
+                             value="{{label.name}}"
+                             [(ngModel)]="label.checked"
+                             (ngModelChange)="addLabelOnNote($event, label.labelId, note.noteId)"/>
+                              
+                              {{label.name}}
+                          </label>
+      </div>
+    </div>
                     </div>
                   </mat-menu>
-              <!-- <button type="submit" mat-menu-item>
+                  <!-- <button type="submit" mat-menu-item>
                   <span>change labels</span>
                 </button> -->
-              </mat-menu>
-           
+                </mat-menu>
+
+              </div>
             </div>
-           </div>
-        </mat-card>
+
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
+<!-- 
+addRemoveLabelToNote(noteId,labelId,operation): void{
+
+     console.log("note updating with label");
+     this.noteService.updateNote('note/addLabelToNote/'+noteId+'/'+labelId+'/'+operation,
+     {
+       params:{
+         labelId:labelId,
+         noteId:noteId,
+         operation:operation
+
+        }
+    }).subscribe(data => {
+      console.log("color  response", data);
+      });
+     };
+
+    doSomething(event,labelId, noteId)
+    {
+      this.addRemoveLabelToNote(noteId,labelId,event);
+      console.log(noteId,labelId,event);
+     }
+    
+
+     <div>
+                      <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getAllLabels()" > 
+                      <span> Add label</span>
+                      </button>
+                      </div> 
+                        <mat-menu #label="matMenu">
+                        <div fxLayout="column" fxLayoutGap="20px">
+                      <div>
+                        <b>label note</b>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                        <input matInput placeholder="Enter label name">
+                        </mat-form-field>
+                      </div>
+
+                       <div *ngIf="labels!=null">
+                        <div *ngFor="let label of labels">
+                          <label>
+                            <input type="checkbox" 
+                             name="labels" 
+                             value="{{label.labelTitle}}"
+                             [(ngModel)]="label.checked" 
+                             (ngModelChange)="doSomething($event, label.labelId, note.noteId)"/>
+                              {{label.labelTitle}}
+                          </label>
+                        </div>
+                      </div>
+                       -->

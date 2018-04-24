@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
      this.labels = res;
      console.log(this.labels);
     });
-
-
   }
 
   openDialog(){
@@ -40,9 +38,7 @@ this.dialog.open(LabelComponent,{
     });
 
   }
-
     signOut() : void{
-    
     localStorage.clear();
     this.router.navigate(['/login']);
   }

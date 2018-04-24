@@ -70,4 +70,14 @@ updateNotes(note,status,field):Observable<any>{
 
 return this.userService.putService('updatenotes',note);
 }
+
+addLabelOnNote(operation,noteId,labelId){
+
+  this.userService.putService1('addLabelOnNotes/'+noteId+'/'+labelId+'/'+operation)
+  .subscribe(response => {
+    console.log("successfull",response);
+
+  });
+
+}
 }

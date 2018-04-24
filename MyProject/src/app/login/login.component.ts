@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         console.log("in login");
         console.log('auth',response);
         localStorage.setItem('Authorization', response.headers.get("Authorization"))
+        this.userService.setAuthorization();
         this.router.navigate(['/home/note']);
       }
       else{if (response.status !== 200) {

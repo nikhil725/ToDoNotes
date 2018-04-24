@@ -26,7 +26,6 @@ export class LoggedInAuthGuard implements CanActivate {
         if (!localStorage.getItem('Authorization')) {
             return true;
         }
-
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/home/note']);
         return false;

@@ -15,13 +15,25 @@ export class UserService {
   model: any = {};
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Authorization')
+      'Content-Type': 'application/json'
     })
   };
-  public urlpath: string;
-  constructor(private http: HttpClient) { }
 
+  public urlpath: string;
+  constructor(private http: HttpClient) { 
+
+  this.setAuthorization();
+  }
+  
+  setAuthorization(){
+    let token = localStorage.getItem('Authorization');
+    if(token){
+      this.httpOptions.headers = this.httpOptions.headers.set("Authorization",token)
+    }else{
+      this.httpOptions.headers = this.httpOptions.headers.delete("Authorization")
+    }
+
+  }
   registerUser(path, model): Observable<any> {
     console.log(path, model);
 
@@ -54,7 +66,13 @@ export class UserService {
 
     this.urlpath = this.rootUrl.concat(path);
     return this.http.put(this.urlpath, note, this.httpOptions);
+  }
 
+  putService1(path): Observable<any> {
+
+    this.urlpath = this.rootUrl.concat(path);
+
+    return this.http.put(this.urlpath, this.httpOptions);
   }
 
 }
