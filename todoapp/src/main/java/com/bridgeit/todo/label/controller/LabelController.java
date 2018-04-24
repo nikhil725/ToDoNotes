@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,6 +58,77 @@ public class LabelController {
 			return new ResponseEntity<List<Notes>>(HttpStatus.NO_CONTENT);
 		}
 		
+		}
+		
+	@RequestMapping(value = "/deleteLabel", method = RequestMethod.POST)
+	public ResponseEntity<Void> deleteLabel(@RequestBody Label label, HttpServletRequest request) {
+		System.out.println(label.getLabelId());
+		String token = request.getHeader("Authorization");
+		try {
+			//labelService.deleteLabel(label, token);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+	}
+
+	
+	
+	@RequestMapping(value="addLabelOnNotes/{noteId}/{labelId}/{operation}", method= RequestMethod.PUT)
+	public ResponseEntity<?> addLabelOnNote(@PathVariable("noteId") int noteId, @PathVariable("labelId") int labelId,
+			@PathVariable("operation") String operation){
+		
+		boolean status = Boolean.valueOf(operation);
+		
+		if(status == true) {
+			
+			labelService.addLabel(noteId, labelId);
+			
+			
+		}else if(status == false) {
+			
+			labelService.deleteLabelFromNote();
+		}
+	
+		return null;
+			
+		
 	}
 		
+		
+	
+	
+	
+	
+/*	@RequestMapping(value = "/addLabelToNote/{noteId}/{labelId}/{operation}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void addLabelToNote(@PathVariable("noteId") int noteId, @PathVariable("labelId") int labelId,
+			@PathVariable("operation") String operation, HttpServletRequest request) {
+		boolean operation1 = Boolean.valueOf(operation);
+		// boolean operation1=false;
+		if (operation1 == true) {
+			noteService.addLabel(noteId, labelId);
+			Response response = new Response();
+			response.setMsg("note update with label");
+			response.setStatus(1);
+
+			logger.info("note update with label successfully");
+			// return new ResponseEntity<Response>(response, HttpStatus.OK);
+
+		} else if (operation1 == false) {
+			noteService.deleteLabelFromNote(noteId, labelId);
+			Response response = new Response();
+			response.setMsg("label deleted successfully");
+			response.setStatus(1);
+
+			logger.info("label deleted successfully");
+			// return new ResponseEntity<Response>(response, HttpStatus.OK);
+		} else {
+			System.out.println("invalid api");
+		}
+
+	}
+	*/
+	
+	
 }

@@ -2,6 +2,8 @@ package com.bridgeit.todo.label.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,6 +34,14 @@ public class LabelDaoImpl implements ILabelDao {
 		criteria.add(Restrictions.eq("user", user));
 		List<Label> labels = criteria.list();
 		return labels;
+	}
+
+	@Override
+	public void addLableOnNote(int noteId, int labelId) {
+		
+		Session session = mySessionFactory.getCurrentSession();
+		Query query = (Query) session.createQuery("insert into NoteLabel(noteId,labelId)");
+		query.executeUpdate();
 	}
 	
 }

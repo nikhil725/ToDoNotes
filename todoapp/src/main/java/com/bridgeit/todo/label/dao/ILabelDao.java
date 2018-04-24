@@ -9,6 +9,6 @@ public interface ILabelDao {
 
 	String createlabel(Label label);
 	public List<Label> getLabels(User user);
-
+	public void addLableOnNote(int noteId, int labelId);
 	
 }

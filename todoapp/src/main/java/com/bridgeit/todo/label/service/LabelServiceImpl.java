@@ -52,6 +52,28 @@ public class LabelServiceImpl implements ILabelService {
     		 }
     		 return labelDto;
     		}
+
+	@Override
+	@Transactional
+	public void addLabel(int noteId, int labelId) {
+		
+		labelDao.addLableOnNote(noteId, labelId);
+		
+		
+		
+	}
+
+	@Override
+	public void deleteLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteLabelFromNote() {
+		// TODO Auto-generated method stub
+		
+	}
        
      	}
 

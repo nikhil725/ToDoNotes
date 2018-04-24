@@ -9,6 +9,9 @@ public interface ILabelService {
 	
 	public String createLabel(Label label, int userID);
 	List<LabelRes> getLabels(int userId);
+	public void addLabel(int noteId, int labelId);
+	public void deleteLabel();
+	public void deleteLabelFromNote();
 	
 	
 }
