@@ -78,6 +78,14 @@ addLabelOnNote(operation,noteId,labelId){
     console.log("successfull",response);
 
   });
+}
+
+removeLabelOnNote(operation,noteId,labelId){
+this.userService.putService1('addLabelOnNotes/'+noteId+'/'+labelId+'/'+operation)
+  .subscribe(response => {
+    console.log("successfull",response);
+
+  });
 
 }
 }

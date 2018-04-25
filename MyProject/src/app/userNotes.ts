@@ -8,4 +8,11 @@ export class UserNotes {
     pin : boolean;
     color : string;
     reminder: Date;
+    labels :Array<LabelObject>;
 }
+
+export class LabelObject{
+    labelId : number;
+    name : string;
+}
+

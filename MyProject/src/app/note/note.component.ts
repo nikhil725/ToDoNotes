@@ -135,8 +135,14 @@ getLabels(){
 
 addLabelOnNote(operation,noteId,labelId){
 
-  this.noteService.addLabelOnNote(operation,noteId,labelId);
+  this.noteService.addLabelOnNote(operation, labelId, noteId);
   console.log(operation,noteId,labelId);
   
+  }
+
+  removeLabel(status,noteId,labelId){
+
+    this.noteService.removeLabelOnNote(status,labelId,noteId);
+    console.log(status,noteId,labelId);
   }
 }

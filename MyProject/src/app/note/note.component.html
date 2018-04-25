@@ -151,7 +151,7 @@
     <div *ngFor="let note of notes">
       <div *ngIf="note.trash=== false && note.archive=== false && note.pin=== false">
         <div fxLayout="row wrap">
-          <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+          <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
 
             <div style="margin-left: 90%;">
               <img src="{{pinSvg}}" (click)="updateNote(note,'true','pin')">
@@ -164,6 +164,24 @@
             <mat-card-header>
               {{note.description}}
             </mat-card-header>
+            
+            <div *ngIf="note.labels!=null">
+              <div *ngFor="let label of note.labels">
+                <div fxLayout="row" fxLayoutGap="5px">
+                  <div>
+                   
+                    <mat-chip-list>
+                      <mat-chip [innerHTML]="label.name">
+                        <img src="{{clearSvg}}" (click)="removeLabel(false, note.noteId, label.labelId)">
+                      </mat-chip>
+                    </mat-chip-list>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
             <div *ngIf="note.reminder!=null">
               <!-- <div mat-menu-item fxLayout="row" style="background-color:brown;">
               <div style="font-size: 12px;">
@@ -257,7 +275,7 @@
                 </button>
                   <!-- change label tag -->
                   <div>
-                  <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getLabels()"> 
+                    <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getLabels()"> 
                   <span>change label</span>
                   </button>
                   </div>
@@ -272,9 +290,9 @@
                           <input matInput placeholder="Search name">
                         </mat-form-field>
                       </div>
-                       <div *ngIf="labels!=null">
-                      <div *ngFor="let label of labels">
-                      <label>
+                      <div *ngIf="labels!=null">
+                        <div *ngFor="let label of labels">
+                          <label>
                             <input type="checkbox" 
                              name="labels" 
                              value="{{label.name}}"
@@ -283,8 +301,8 @@
                               
                               {{label.name}}
                           </label>
-      </div>
-    </div>
+                        </div>
+                      </div>
                     </div>
                   </mat-menu>
                   <!-- <button type="submit" mat-menu-item>
@@ -301,57 +319,3 @@
     </div>
   </div>
 </div>
-
-<!-- 
-addRemoveLabelToNote(noteId,labelId,operation): void{
-
-     console.log("note updating with label");
-     this.noteService.updateNote('note/addLabelToNote/'+noteId+'/'+labelId+'/'+operation,
-     {
-       params:{
-         labelId:labelId,
-         noteId:noteId,
-         operation:operation
-
-        }
-    }).subscribe(data => {
-      console.log("color  response", data);
-      });
-     };
-
-    doSomething(event,labelId, noteId)
-    {
-      this.addRemoveLabelToNote(noteId,labelId,event);
-      console.log(noteId,labelId,event);
-     }
-    
-
-     <div>
-                      <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getAllLabels()" > 
-                      <span> Add label</span>
-                      </button>
-                      </div> 
-                        <mat-menu #label="matMenu">
-                        <div fxLayout="column" fxLayoutGap="20px">
-                      <div>
-                        <b>label note</b>
-                      </div>
-                      <div>
-                        <mat-form-field>
-                        <input matInput placeholder="Enter label name">
-                        </mat-form-field>
-                      </div>
-
-                       <div *ngIf="labels!=null">
-                        <div *ngFor="let label of labels">
-                          <label>
-                            <input type="checkbox" 
-                             name="labels" 
-                             value="{{label.labelTitle}}"
-                             [(ngModel)]="label.checked" 
-                             (ngModelChange)="doSomething($event, label.labelId, note.noteId)"/>
-                              {{label.labelTitle}}
-                          </label>
-                        </div>
-                      </div>
-                       -->

@@ -10,7 +10,7 @@ import { UserNotes } from '../userNotes';
 @Injectable()
 export class UserService {
 
-  rootUrl = "http://localhost:8080/todoapp/"
+  rootUrl = "http://localhost:8080/todo/"
 
   model: any = {};
   httpOptions = {
@@ -67,11 +67,10 @@ export class UserService {
     this.urlpath = this.rootUrl.concat(path);
     return this.http.put(this.urlpath, note, this.httpOptions);
   }
-
+  
   putService1(path): Observable<any> {
 
     this.urlpath = this.rootUrl.concat(path);
-
     return this.http.put(this.urlpath, this.httpOptions);
   }
 
