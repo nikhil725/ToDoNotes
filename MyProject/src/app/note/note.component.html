@@ -171,7 +171,7 @@
                   <div>
                    
                     <mat-chip-list>
-                      <mat-chip [innerHTML]="label.name">
+                      <mat-chip>{{label.name}}
                         <img src="{{clearSvg}}" (click)="removeLabel(false, note.noteId, label.labelId)">
                       </mat-chip>
                     </mat-chip-list>
@@ -243,6 +243,13 @@
                 </mat-menu>
 
               </mat-menu>
+              <div>
+                <button type="submit" mat-menu-item (click)="openDialog(note)">
+                  <mat-icon>person_add</mat-icon>
+                </button>
+                
+              </div>
+
               <div>
                 <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
                     <mat-icon>archive</mat-icon>

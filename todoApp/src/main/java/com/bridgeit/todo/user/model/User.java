@@ -37,11 +37,9 @@ public class User {
 	@Column
 	private Boolean status = false;
 	
-
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private Set<Notes> notes;
-	
 	
 	
 	public String getRandomId() {

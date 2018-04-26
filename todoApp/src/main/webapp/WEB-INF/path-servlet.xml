@@ -78,5 +78,8 @@
 	<bean id="labelService" class="com.bridgeit.todo.label.service.LabelServiceImpl"></bean>
 	
 	<bean id="labelDao" class="com.bridgeit.todo.label.dao.LabelDaoImpl"></bean>
+	
+	<bean id="collaboratorService" class="com.bridgeit.todo.collaborator.service.CollaboratorServiceImpl"></bean>
 
+	<bean id="collaboratorDao" class="com.bridgeit.todo.collaborator.dao.CollaboratorDaoImpl"> </bean>
 </beans>

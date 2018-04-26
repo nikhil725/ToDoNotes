@@ -26,6 +26,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { LabelComponent } from './label/label.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AuthGuard,LoggedInAuthGuard } from './auth/index';
+import { CollaboratorComponent } from './collaborator/collaborator.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuthGuard,LoggedInAuthGuard } from './auth/index';
     ArchiveComponent,
     ReminderComponent,
     LabelComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    CollaboratorComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { AuthGuard,LoggedInAuthGuard } from './auth/index';
     MatChipsModule
   ],
   exports: [],
-  entryComponents:[LabelComponent],
+  entryComponents:[LabelComponent,CollaboratorComponent],
   providers: [UserService,NoteService,AuthGuard,LoggedInAuthGuard],
   bootstrap: [AppComponent]
 })

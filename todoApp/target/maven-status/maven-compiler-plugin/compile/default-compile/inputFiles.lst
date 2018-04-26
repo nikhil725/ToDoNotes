@@ -23,6 +23,7 @@
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/util/Token.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/label/model/Label.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/user/service/IUserService.java
+/home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/collaborator/model/Collaborator.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/label/service/LabelServiceImpl.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/label/model/LabelResDto.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/notes/model/Notes.java

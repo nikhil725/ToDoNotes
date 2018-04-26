@@ -74,4 +74,11 @@ export class UserService {
     return this.http.put(this.urlpath, this.httpOptions);
   }
 
+  getUser(path): Observable<User>{
+
+    this.urlpath = this.rootUrl.concat(path);
+    return this.http.get<User>(this.urlpath, this.httpOptions);
+
+  }
+
 }

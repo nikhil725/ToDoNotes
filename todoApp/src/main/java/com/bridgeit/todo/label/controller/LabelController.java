@@ -72,8 +72,6 @@ public class LabelController {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 	}
-
-	
 	
 	@RequestMapping(value="addLabelOnNotes/{noteId}/{labelId}/{operation}", method= RequestMethod.PUT)
 	public ResponseEntity<?> addRemoveLabel(@PathVariable("noteId") int noteId, @PathVariable("labelId") int labelId,

@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   openDialog(){
 this.dialog.open(LabelComponent,{
-     
+    
       width: '400px',
       height: '210px'
     });

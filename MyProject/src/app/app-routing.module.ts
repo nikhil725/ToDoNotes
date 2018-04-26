@@ -10,6 +10,8 @@ import { TrashComponent } from './trash/trash.component';
 import {ArchiveComponent} from './archive/archive.component';
 import {ReminderComponent} from './reminder/reminder.component';
 import { AuthGuard,LoggedInAuthGuard } from './auth/index';
+import { CollaboratorComponent } from './collaborator/collaborator.component';
+
 
 
 // redirectTo will redirect the first page to login page by default
@@ -33,6 +35,7 @@ const routes: Routes = [
     },
     { path: 'forgot', component: ForgotComponent },
     { path: 'returnto-signup', component: ReturntoSignupComponent },
+    { path: 'collaborator', component: CollaboratorComponent},
      { path: '**', component: HomeComponent}
 ];
 

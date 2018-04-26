@@ -6,7 +6,8 @@ import { UserNotes } from '../userNotes';
 import { ColorList } from '../colorList';
 import { NoteService } from '../shared/note.service';
 import{Label} from '../Label';
-
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 
 @Component({
   selector: 'app-note',
@@ -25,13 +26,13 @@ export class NoteComponent implements OnInit {
   unpinSvg = '/assets/icons/unpin.svg';
   reminderSvg = '/assets/icons/reminder.svg'
   clearSvg = '/assets/icons/clear.svg'
-  constructor(private noteService: NoteService, private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
     console.log('in get service');
     this.noteService.getNotes().subscribe(res => {
       this.notes = res;
-      console.log(this.notes);
+      console.log('notes..',this.notes);
     });
   }
 
@@ -144,5 +145,14 @@ addLabelOnNote(operation,noteId,labelId){
 
     this.noteService.removeLabelOnNote(status,labelId,noteId);
     console.log(status,noteId,labelId);
+  }
+
+   openDialog(note){
+this.dialog.open(CollaboratorComponent,{
+      data :note,
+      width: '400px',
+      height: '210px'
+    });
+
   }
 }

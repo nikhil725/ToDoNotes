@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgeit.todo.user.model.User;
 import com.bridgeit.todo.user.service.IUserService;
+import com.bridgeit.todo.util.Token;
 
 @RestController
 public class UserController {
@@ -98,10 +99,11 @@ public class UserController {
 			
 	}
 	
-	@RequestMapping(value = "getUserById/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUser(@PathVariable("id") int id) {
+	@RequestMapping(value = "getUserById", method = RequestMethod.GET)
+	public ResponseEntity<User> getUser(HttpServletRequest request) {
 		
 		try {
+			int id = Token.getId(request.getHeader("Authorization"));
 			System.out.println("In getuser");
 			User userInformtion = userService.getUserById(id);
 			

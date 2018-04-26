@@ -3,6 +3,7 @@ import { NoteService } from '../shared/note.service';
 import { UserService } from '../shared/user.service';
 
 
+
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -14,6 +15,7 @@ export class LabelComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+
   }
    createLabel(): void {
     console.log(this.model);
