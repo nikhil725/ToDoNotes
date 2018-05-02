@@ -163,11 +163,12 @@ public class UserController {
 	@RequestMapping(value = "/resetPasswordLink/{token:.+}", method = RequestMethod.GET)
 	public ResponseEntity<Void> resetPasswordLink(@PathVariable("token") String token, HttpServletResponse response) throws IOException  {
 		
+		System.out.println("In side reset password link");
 		response.sendRedirect("http://localhost:4200/resetpassword");
 		return null;
 	}
 
-	@RequestMapping(value = "/resetPassword/{token:.+}", method = RequestMethod.POST)
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
 	public ResponseEntity<Void> resetPasswowrd(@PathVariable("token") String token, HttpServletRequest request, @RequestBody User user)  {
 		
 		String newPassword = user.getPassword();
