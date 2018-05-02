@@ -72,7 +72,7 @@ public class NoteDaoImpl implements INoteDao{
 		System.out.println("print list");
 		List<Notes> notes = criteria.list();
 		System.out.println("print list");
-	
+		
 		return notes;
 	}
 
@@ -107,6 +107,29 @@ public class NoteDaoImpl implements INoteDao{
 	@Override
 	public void getlabelBynoteId(int noteId) {
 		//return null;
+	}
+
+
+	@Override
+	public Notes getNotebyNoteId(int id) {
+		Session session = mySessionFactory.getCurrentSession();
+		return (Notes) session.get(Notes.class, id);
+	
+	}
+
+
+	@Override
+	public Notes getSharedNote(int noteId, int sharedUserId) {
+		
+		return null;
+	}
+
+
+	@Override
+	public Notes getNote(Notes notes) {
+		Session session = mySessionFactory.getCurrentSession();
+		return (Notes) session.get(Notes.class, notes.getNoteId());
+		
 	}
 
 

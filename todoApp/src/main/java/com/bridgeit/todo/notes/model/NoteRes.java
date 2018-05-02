@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.bridgeit.todo.collaborator.model.Collaborator;
+import com.bridgeit.todo.collaborator.model.CollaboratorRes;
 import com.bridgeit.todo.label.model.Label;
 import com.bridgeit.todo.label.model.LabelRes;
 
@@ -17,7 +19,9 @@ public class NoteRes {
 	private Boolean pin;
 	private String color;
 	private Date reminder;
+	private String collaboratorName;
 	private List<LabelRes> labels = new ArrayList<>();
+	private List<CollaboratorRes> collaborators = new ArrayList<>();
 
 	public NoteRes(Notes object) {
 
@@ -29,8 +33,14 @@ public class NoteRes {
 		this.pin = object.getPin();
 		this.color = object.getColor();
 		this.reminder = object.getReminder();
+		this.collaboratorName =object.getCollaboratorName();
+		
 		for (Label label : object.getLabels()) {
 			labels.add(new LabelRes(label));
+		}
+		
+		for(Collaborator collaborator : object.getCollaborators()) {
+			collaborators.add(new CollaboratorRes(collaborator));
 		}
 
 	}
@@ -106,5 +116,23 @@ public class NoteRes {
 	public void setLabels(List<LabelRes> labels) {
 		this.labels = labels;
 	}
+
+	public List<CollaboratorRes> getCollaborators() {
+		return collaborators;
+	}
+
+	public void setCollaborators(List<CollaboratorRes> collaborators) {
+		this.collaborators = collaborators;
+	}
+
+	public String getCollaboratorName() {
+		return collaboratorName;
+	}
+
+	public void setCollaboratorName(String collaboratorName) {
+		this.collaboratorName = collaboratorName;
+	}
+	
+	
 
 }

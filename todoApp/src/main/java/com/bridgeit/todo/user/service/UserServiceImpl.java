@@ -147,9 +147,9 @@ public class UserServiceImpl implements IUserService {
 
 	
 	@Transactional
-	public String resetPassword(HttpServletRequest request, String newPassword, String token) {
-
-		int id = Token.getId(token);
+	public String resetPassword(HttpServletRequest request, String newPassword, int id) {
+		
+		System.out.println("In side reset Password");
 		User user = userDao.getUserById(id);
 		//String newPassword = user.getPassword();
 		String hashCodePassword = encoder.encode(newPassword);

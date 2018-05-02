@@ -134,6 +134,18 @@ public class UserDaoImpl implements IUserDao {
 		
 	}
 
+	@Override
+	public User getuser(User user) {
+		
+		Session session = mySessionFactory.getCurrentSession();
+		System.out.println("after session");
+		User user1 = (User) session.get(User.class, user.getId());
+		System.out.println("in dao "+user.getPassword());
+		System.out.println("Successfull....");
+		return  user;
+	
+	}
+
 
 
 }

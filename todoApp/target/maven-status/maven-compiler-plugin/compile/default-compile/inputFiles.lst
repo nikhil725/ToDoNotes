@@ -1,5 +1,6 @@
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/notes/service/INoteService.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/user/model/User.java
+/home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/collaborator/model/CollaboratorResDto.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/collaborator/controller/CollaboratorController.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/util/LoggingInterceptor.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/user/service/UserServiceImpl.java
@@ -19,6 +20,7 @@
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/user/controller/UserController.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/user/dao/UserDaoImpl.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/notes/dao/NoteDaoImpl.java
+/home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/collaborator/model/CollaboratorRes.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/label/service/ILabelService.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/label/controller/LabelController.java
 /home/bridgeit/eclipse-workspace/todoApp/src/main/java/com/bridgeit/todo/util/Validation.java

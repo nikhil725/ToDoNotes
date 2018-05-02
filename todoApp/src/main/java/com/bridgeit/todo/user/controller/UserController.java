@@ -35,11 +35,9 @@ public class UserController {
 		System.out.println("In side register...");
 		
 		if (userService.isEmailIdPresent(user.getEmail())) 
-		{
-			
+		{	
 			return new ResponseEntity<String>("this email id already register...try with another",HttpStatus.CONFLICT);
-			
-			
+				
 		} else {
 		
 		if(userService.addUser(user, req)!=null)
@@ -169,12 +167,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-	public ResponseEntity<Void> resetPasswowrd(@PathVariable("token") String token, HttpServletRequest request, @RequestBody User user)  {
+	public ResponseEntity<Void> resetPasswowrd(HttpServletRequest request, @RequestBody User user)  {
 		
+		System.out.println("In side reset password");
+		int id = Token.getId(request.getHeader("Authorization"));
 		String newPassword = user.getPassword();
 		System.out.println("new password: "+newPassword);
 
-		userService.resetPassword(request, newPassword, token);
+		userService.resetPassword(request, newPassword, id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 		
 	}

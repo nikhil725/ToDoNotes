@@ -7,6 +7,7 @@ com/bridgeit/todo/label/dao/ILabelDao.class
 com/bridgeit/todo/notes/service/INoteService.class
 com/bridgeit/todo/label/service/ILabelService.class
 com/bridgeit/todo/notes/model/Notes.class
+com/bridgeit/todo/collaborator/model/CollaboratorRes.class
 com/bridgeit/todo/label/model/LabelResDto.class
 com/bridgeit/todo/util/Token.class
 com/bridgeit/todo/label/service/LabelServiceImpl.class
@@ -30,6 +31,7 @@ com/bridgeit/todo/collaborator/model/Collaborator.class
 com/bridgeit/todo/util/Mail.class
 com/bridgeit/todo/collaborator/dao/ICollaboratorDao.class
 com/bridgeit/todo/collaborator/service/CollaboratorServiceImpl.class
+com/bridgeit/todo/collaborator/model/CollaboratorResDto.class
 com/bridgeit/todo/user/service/UserServiceImpl.class
 com/bridgeit/todo/user/dao/UserDaoImpl.class
 com/bridgeit/todo/util/LoggingInterceptor.class

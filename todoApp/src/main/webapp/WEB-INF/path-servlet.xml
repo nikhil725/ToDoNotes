@@ -35,7 +35,7 @@
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.user}" />
 		<property name="password" value="${db.password}" />
-		<property name="show_sql" value="true" />
+		<!-- <property name="show_sql" value="true" /> -->
 	</bean>
 
 	<bean id="mySessionFactory"

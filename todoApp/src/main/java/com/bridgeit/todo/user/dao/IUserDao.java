@@ -13,7 +13,7 @@ public interface IUserDao {
 	public User getUserByRandomId(String randomId);
 	public User updateRecord(User user);
 	List<User> checkEmailId(String emailId);
-	
+	User getuser(User user);
 	
 	
 	

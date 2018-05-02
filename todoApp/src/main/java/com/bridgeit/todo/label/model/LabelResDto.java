@@ -12,7 +12,5 @@ public class LabelResDto {
 
 	public void setLabels(List<LabelRes> labels) {
 		this.labels = labels;
-	}
-	
-	
+	}	
 }

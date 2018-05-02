@@ -23,6 +23,7 @@ import com.bridgeit.todo.util.Token;
 @RestController
 public class LabelController {
 
+	
 	@Autowired
 	ILabelService labelService;
 	
@@ -80,7 +81,6 @@ public class LabelController {
 		if(operation) {
 			
 			labelService.addLabel(noteId, labelId);
-			
 			
 		}else if(!operation) {
 			

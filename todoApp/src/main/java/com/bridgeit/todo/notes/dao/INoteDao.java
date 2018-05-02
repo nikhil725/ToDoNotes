@@ -13,5 +13,8 @@ public interface INoteDao {
 	List<Notes> getNotesbyId(int id);
 	List<Notes> getNotes(User user);
 	public void getlabelBynoteId(int noteId);
+	 Notes getNotebyNoteId(int id);
+	Notes getSharedNote(int noteId,int sharedUserId);
+	Notes getNote(Notes notes);
 	
 }

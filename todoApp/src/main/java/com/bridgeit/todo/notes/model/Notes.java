@@ -12,8 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.bridgeit.todo.collaborator.model.Collaborator;
 import com.bridgeit.todo.label.model.Label;
 import com.bridgeit.todo.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -47,6 +49,8 @@ public class Notes {
 	@Column
 	private Date reminder;
 	
+	private String collaboratorName;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id")
@@ -55,9 +59,11 @@ public class Notes {
 	@ManyToMany
 	@JoinTable(name ="NoteLabel", joinColumns=@JoinColumn(name="noteId"), inverseJoinColumns=@JoinColumn(name="labelId"))
 	private Set<Label> labels;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="noteId")
+	private Set<Collaborator> collaborators;
 
-	
-	
 	public Set<Label> getLabels() {
 		return labels;
 	}
@@ -137,5 +143,20 @@ public class Notes {
 	public void setReminder(Date reminder) {
 		this.reminder = reminder;
 	}
-	
+
+	public Set<Collaborator> getCollaborators() {
+		return collaborators;
+	}
+
+	public void setCollaborators(Set<Collaborator> collaborators) {
+		this.collaborators = collaborators;
+	}
+
+	public String getCollaboratorName() {
+		return collaboratorName;
+	}
+
+	public void setCollaboratorName(String collaboratorName) {
+		this.collaboratorName = collaboratorName;
+	}
 }

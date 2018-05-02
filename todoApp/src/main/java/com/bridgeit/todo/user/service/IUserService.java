@@ -12,7 +12,7 @@ public interface IUserService {
 	public User getUserById(int id);
 	public boolean forgotPassword(User user, HttpServletRequest req);
 	public String activateUser(String randomId, HttpServletRequest request);
-	public String resetPassword(HttpServletRequest request, String newPassword, String randomId);
+	public String resetPassword(HttpServletRequest request, String newPassword, int id);
 	boolean isEmailIdPresent(String emailId);
 
 }

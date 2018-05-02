@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bridgeit.todo.collaborator.dao.CollaboratorDaoImpl;
+import com.bridgeit.todo.collaborator.dao.ICollaboratorDao;
+import com.bridgeit.todo.collaborator.model.Collaborator;
 import com.bridgeit.todo.notes.dao.INoteDao;
 import com.bridgeit.todo.notes.model.NoteRes;
 import com.bridgeit.todo.notes.model.Notes;
@@ -22,8 +25,9 @@ public class NoteServiceImpl implements INoteService{
 	@Autowired
 	IUserDao userDao;
 	
-	
-	
+	@Autowired
+	ICollaboratorDao collaboratorDao;
+
 	@Transactional
 	public int createNote(Notes notes, int id) {
 		System.out.println("In side create note dao");
@@ -71,13 +75,33 @@ public class NoteServiceImpl implements INoteService{
 	//	return noteDao.getNotesbyId(id);
 		User user = userDao.getUserById(id);
 		 List<Notes> notes =noteDao.getNotes(user);	
-		
+		 List<Collaborator> collabs = collaboratorDao.getCollbySharedId(user);
+		 
+		 for (Collaborator collaborator : collabs) {
+			 
+			 Notes obj = collaborator.getNoteId();
+			 obj.setCollaboratorName(collaborator.getOwnerId().getName());
+			 notes.add(obj);
+			
+		}
+		 
 		 List<NoteRes> resDTO = new ArrayList<NoteRes>();
 		 
 		 for(Notes object : notes) 
 		 {	
+			/* if(object.getCollaborators()!= null) {
+			 for( Collaborator collaboratorObj :object.getCollaborators())
+		     {
+			  // Notes coollaboratedNote= noteDao.getSharedNote(collaboratorObj.getNoteId(),collaboratorObj.getSharedUserId());
+				 Notes note = noteDao.getNote(collaboratorObj.getNoteId());
+				 User user2 = userDao.getuser(collaboratorObj.getOwnerId());
+				 object.setTitle(note.getTitle());
+				 object.setDescription(note.getDescription());
+				 object.setCollaboratorName(user2.getName());
+		      }
+			 }*/
 			
-			 noteDao.getlabelBynoteId(object.getNoteId());
+			// noteDao.getlabelBynoteId(object.getNoteId())
 			 NoteRes dto= new NoteRes(object);
 			 resDTO.add(dto);
 		 }
