@@ -64,9 +64,7 @@
 	</bean>
 
 	<bean id="userDao" class="com.bridgeit.todo.user.dao.UserDaoImpl">
-		
 	</bean>
-
 	<bean id="userService" class="com.bridgeit.todo.user.service.UserServiceImpl"></bean>
 	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
@@ -83,5 +81,5 @@
 	
 	<bean id="collaboratorService" class="com.bridgeit.todo.collaborator.service.CollaboratorServiceImpl"></bean>
 
-	<bean id="collaboratorDao" class="com.bridgeit.todo.collaborator.dao.CollaboratorDaoImpl"> </bean>
+	<bean id="collaboratorDao" class="com.bridgeit.todo.collaborator.dao.CollaboratorDaoImpl"> </bean>	
 </beans>

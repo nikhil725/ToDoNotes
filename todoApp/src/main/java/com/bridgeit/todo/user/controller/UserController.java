@@ -162,7 +162,7 @@ public class UserController {
 	public ResponseEntity<Void> resetPasswordLink(@PathVariable("token") String token, HttpServletResponse response) throws IOException  {
 		
 		System.out.println("In side reset password link");
-		response.sendRedirect("http://localhost:4200/resetpassword");
+		response.sendRedirect("http://localhost:4200/resetpassword/" + token);
 		return null;
 	}
 

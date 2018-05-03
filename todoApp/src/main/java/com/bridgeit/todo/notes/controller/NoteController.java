@@ -1,5 +1,8 @@
 package com.bridgeit.todo.notes.controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +23,9 @@ import com.bridgeit.todo.notes.model.NoteRes;
 import com.bridgeit.todo.notes.model.Notes;
 import com.bridgeit.todo.notes.service.INoteService;
 import com.bridgeit.todo.user.model.User;
+import com.bridgeit.todo.util.JsoupDemo;
 import com.bridgeit.todo.util.Token;
+import com.bridgeit.todo.util.UrlInfo;
 
 @RestController
 public class NoteController {
@@ -91,6 +96,48 @@ public class NoteController {
 		}
 	}
 	
+	
+	@RequestMapping(value="/getUrl", method = RequestMethod.POST)
+	public List<UrlInfo> getUrlInfo(@RequestBody List<String> urls,HttpServletRequest request) throws URISyntaxException, IOException{
+		
+		JsoupDemo jsoupDemo = new JsoupDemo();
+		UrlInfo urlInfo = null;
+		List<UrlInfo> urlData = new ArrayList<>();
+		
+		for(String url : urls) {
+			System.out.println(urls);
+			
+			urlInfo = jsoupDemo.getUrlData(url);
+			urlData.add(urlInfo);
+		}
+		return urlData;
+		
+	}
+
+	
+/*@RequestMapping(value = "/getUrls", method = RequestMethod.POST)
+public List<UrlData> getUrlInfo(@RequestBody List<String> urls,HttpServletRequest request)
+{
+ 
+     LinkScrapper link=new LinkScrapper();
+     UrlData urlData=null;
+    List<UrlData> urlDatas = new ArrayList<>();
+     
+    for (String url : urls) 
+ {
+   	System.out.println(urls);
+    try{
+   urlData = link.getMetaData(url);
+   urlDatas.add(urlData);
+
+} catch (IOException e) 
+   {
+e.printStackTrace();
+   }
+
+ }
+ return urlDatas;
+   }*/
 	
 	
 

@@ -26,8 +26,7 @@ public class CorsFilter extends OncePerRequestFilter{
 		     
         System.out.println("from corse filter");
         chain.doFilter(request, response);
-		
-		
+	
 	}
 
 }
