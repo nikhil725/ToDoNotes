@@ -12,7 +12,7 @@ import {ReminderComponent} from './component/reminder/reminder.component';
 import { AuthGuard,LoggedInAuthGuard } from './auth/index';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import {ResetpasswordComponent} from './component/resetpassword/resetpassword.component';
-
+import { UpdateComponent } from './component/update/update.component';
 
 // redirectTo will redirect the first page to login page by default
 // path :'login' will redirect to LoginComponent in login.component.ts file.
@@ -37,6 +37,7 @@ const routes: Routes = [
     { path: 'returnto-signup', component: ReturntoSignupComponent },
     { path: 'collaborator', component: CollaboratorComponent},
     { path: 'resetpassword/:token', component: ResetpasswordComponent},
+    { path: 'update', component: UpdateComponent},
      { path: '**', component: HomeComponent}
 ];
 

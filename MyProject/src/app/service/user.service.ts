@@ -59,7 +59,7 @@ export class UserService {
     this.urlpath = this.rootUrl.concat(path);
     return this.http.delete<any>(this.urlpath, this.httpOptions);
   }
-
+  
   putService(path, note): Observable<any> {
 
     this.urlpath = this.rootUrl.concat(path);
@@ -79,11 +79,29 @@ export class UserService {
 
   }
 
-  getUrlInfo(path,model):Observable<HttpResponse<any>>{//in response,urlTitle,urlImage converrt hhtp to array[]
-console.log(path);
-//this.addAuthorization();
-this.urlpath= this.rootUrl.concat(path);
-return this.http.post<any>( this.urlpath, model,this.httpOptions);
-}
+  getUrlInfo(path, model): Observable<HttpResponse<any>> {//in response,urlTitle,urlImage converrt hhtp to array[]
+    console.log(path);
+    //this.addAuthorization();
+    this.urlpath = this.rootUrl.concat(path);
+    return this.http.post<any>(this.urlpath, model, this.httpOptions);
+  }
 
-}
+  imageUploadService(path, file, noteId): Observable<any> {
+    this.urlpath = this.rootUrl.concat(path);
+
+    const formdata: FormData = new FormData();
+    const x = file[0];
+    formdata.append('file', x);
+    formdata.append('noteId', noteId);
+
+    const httpOptions2 = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('Authorization')
+      }),
+      observe: 'response' as 'response'
+    };
+
+    return this.http.post<any>(this.urlpath, formdata, httpOptions2);
+  }
+  }
+

@@ -1,5 +1,6 @@
 package com.bridgeit.todo.notes.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgeit.todo.collaborator.dao.CollaboratorDaoImpl;
 import com.bridgeit.todo.collaborator.dao.ICollaboratorDao;
@@ -68,7 +70,7 @@ public class NoteServiceImpl implements INoteService{
 				
 	}
 
-	
+	@Override
 	@Transactional
 	public List<NoteRes> getNotes(int id) {
 		System.out.println("in service");
@@ -107,7 +109,22 @@ public class NoteServiceImpl implements INoteService{
 		 }
 		 return resDTO;
 		}
-	
+
+	@Override
+	@Transactional
+	public void saveImage(MultipartFile fileUpload, int noteId){
+		
+		Notes note = noteDao.getNotebyNoteId(noteId);
+		try {
+			note.setImage(fileUpload.getBytes());
+			noteDao.updateNote(note, noteId);
+
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
 	
 	/*public List<NoteRes> getNotes(int id) {
 		System.out.println("in service");

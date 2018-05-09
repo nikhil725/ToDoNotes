@@ -30,13 +30,14 @@
           <div style="margin-left: 90%;">
             <img src="{{unpinSvg}}" (click)="updateNote(note,'false','pin')">
           </div>
+           <div (click)="openDialogForUpdate(note)">
           <mat-card-header>
             <b>{{note.title}}</b>
           </mat-card-header>
           <mat-card-header>
             {{note.description}}
           </mat-card-header>
-
+           </div>
           <div *ngIf="note.reminder!=null">
 
             <div mat-menu-item fxLayout="row">
@@ -142,12 +143,17 @@
         <div fxLayout="row wrap">
 
           <!-- <app-common [note]="note"></app-common> -->
+          <div *ngIf="note.image">
+            <img [src]="note.imageString"/>
+            <mat-icon (click)="deleteImage(note)">close</mat-icon>
+          </div> 
           <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
 
             <div style="margin-left: 90%;">
               <img src="{{pinSvg}}" (click)="updateNote(note,'true','pin')">
             </div>
 
+            <div (click)="openDialogForUpdate(note)">
             <mat-card-header>
               <b>{{note.title}}</b>
             </mat-card-header>
@@ -155,7 +161,7 @@
             <mat-card-header>
               {{note.description}}
             </mat-card-header>
-
+            </div>
             <div *ngIf="note.labels!=null">
               <div *ngFor="let label of note.labels">
                 <div fxLayout="row" fxLayoutGap="5px">
@@ -267,6 +273,15 @@
                   </a>
                   </div>
                 </mat-menu>
+              </div>
+
+               <div>
+                <button mat-icon-button>
+                  <mat-icon for="file">photo</mat-icon>
+        
+                <input type="file" (change)="fileInput($event.target.files,note.noteId)">
+
+              </button>
               </div>
 
               <div>

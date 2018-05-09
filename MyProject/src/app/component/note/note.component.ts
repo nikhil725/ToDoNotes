@@ -9,6 +9,7 @@ import { ColorList } from '../../colorList';
 import { Label } from '../../object/Label';
 import { CollaboratorComponent } from '../../component/collaborator/collaborator.component';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { UpdateComponent } from '../../component/update/update.component';
 
 @Component({
   selector: 'app-note',
@@ -39,7 +40,7 @@ export class NoteComponent implements OnInit {
       this.notes = res.map(noteObj => {
 
        // console.log("noteObj.discription",noteObj.description);
-        if (this.urlify(noteObj.description))
+        if (this.urlFormat(noteObj.description))
           noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
             console.log(res);
             return res.body;
@@ -48,12 +49,20 @@ export class NoteComponent implements OnInit {
         return noteObj;
       })
       console.log('notes..', this.notes);
-      debugger;
 
 
     });
   }
 
+   openDialogForUpdate(note) {
+
+    this.dialog.open(UpdateComponent, {
+      data: note,
+
+      width: '600px',
+      height: '150px'
+    });
+  }
 
   createNote() {
 
@@ -154,7 +163,6 @@ export class NoteComponent implements OnInit {
 
     this.noteService.addLabelOnNote(operation, labelId, noteId);
     console.log(operation, noteId, labelId);
-
   }
 
   removeLabel(status, noteId, labelId) {
@@ -172,7 +180,7 @@ export class NoteComponent implements OnInit {
   }
 
   getUrlData(description: string): Observable<any> {
-    let url = this.urlify(description);
+    let url = this.urlFormat(description);
     if (!url) {
       let subjectObj = new Subject<any>();
       return subjectObj.asObservable();
@@ -181,12 +189,15 @@ export class NoteComponent implements OnInit {
   }
 
 
-urlify(text) : Array <string> {
-  
-
+urlFormat(text) : Array <string> {
   console.log("text222",text);
   var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
   return text.match(urlRegex);
   
 }
+fileInput(file: File, noteId) {
+    console.log('file', file);
+    this.noteService.imageUpload(file, noteId);
+}
+
 }

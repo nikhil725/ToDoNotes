@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.print.DocFlavor.BYTE_ARRAY;
 
 import com.bridgeit.todo.collaborator.model.Collaborator;
 import com.bridgeit.todo.label.model.Label;
@@ -48,6 +50,10 @@ public class Notes {
 	
 	@Column
 	private Date reminder;
+	
+	@Lob
+	@Column
+	private byte[]image;
 	
 	private String collaboratorName;
 	
@@ -159,4 +165,14 @@ public class Notes {
 	public void setCollaboratorName(String collaboratorName) {
 		this.collaboratorName = collaboratorName;
 	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+	
 }

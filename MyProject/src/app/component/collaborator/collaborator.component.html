@@ -4,7 +4,6 @@
    <div fxLayout="row">
      <img src="assets/icons/Red.png" alt="Alternative text." width="42" height="42">
     {{user?.name}}<span >(Owner)</span>
-    
    </div>
     <div *ngIf="data.collaborators!=null"> 
     <div *ngFor="let collaborator of data.collaborators">
@@ -14,7 +13,6 @@
     </div>
 </div>
 </div>
-
   <div fxLayout="row">
     <mat-icon>person_add </mat-icon>
      <mat-form-field>

@@ -8,27 +8,28 @@ export class UserNotes {
     description: string;
     trash: boolean;
     archive: boolean;
-    pin : boolean;
-    color : string;
+    pin: boolean;
+    color: string;
     reminder: Date;
-    labels :Array<LabelObject>;
-    collaborators : Array<CollaboratorObject>;
-    collaboratorName:string;
+    labels: Array<LabelObject>;
+    collaborators: Array<CollaboratorObject>;
+    collaboratorName: string;
     Urls: UrlResponse[];
-
-urlPromise ?: Observable<any>
+    urlPromise?: Observable<any>
+    image: any[];
+    imageString: string;
 }
 
-export class LabelObject{
-    labelId : number;
-    name : string;
+export class LabelObject {
+    labelId: number;
+    name: string;
 }
-export class CollaboratorObject{
+export class CollaboratorObject {
 
-    sharedUserId : User;
+    sharedUserId: User;
 }
 
-export class User{
+export class User {
 
-    email : string;
+    email: string;
 }

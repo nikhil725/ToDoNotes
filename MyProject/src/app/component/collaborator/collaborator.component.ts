@@ -37,7 +37,6 @@ export class CollaboratorComponent implements OnInit {
     this.notes = res;
     console.log('notes in side collaborator',this.notes);
     });
-   
   }
 
   shareNotes() {

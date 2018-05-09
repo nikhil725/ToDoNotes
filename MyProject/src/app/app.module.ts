@@ -31,6 +31,8 @@ import {LabelService} from './service/label.service' ;
 import { Filter} from './filter.pipe';
 import { CommonComponent } from './component/common/common.component';
 import { TruncatePipe } from './truncate.pipe';
+import { UpdateComponent } from './component/update/update.component';
+import { ColorToolDirective } from './color-tool.directive';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { TruncatePipe } from './truncate.pipe';
     ResetpasswordComponent,
     CollaboratorComponent,  
     Filter, 
-    CommonComponent, TruncatePipe
+    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import { TruncatePipe } from './truncate.pipe';
     MatChipsModule
   ],
   exports: [],
-  entryComponents:[LabelComponent,CollaboratorComponent],
+  entryComponents:[LabelComponent,CollaboratorComponent, UpdateComponent],
   providers: [UserService,NoteService,LabelService,AuthGuard,LoggedInAuthGuard],
   bootstrap: [AppComponent]
 })

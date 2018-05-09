@@ -1,6 +1,6 @@
 <div style="height: 100vh;margin-top: -8px;">
 
-  <mat-toolbar style="background-color:rgb(255, 187, 0);">
+  <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
 
     <div>
       <button mat-icon-button (click)="sidenav.toggle()" href="#"> 
@@ -87,6 +87,10 @@
         <div>
           <button mat-menu-item>
             <span>Labels</span>
+
+            <button mat-button type="submit" (click)="openLabelDialog()" style="margin-left:40%;">
+                <b>EDIT</b>
+              </button>
           </button>
         </div>
         <div *ngFor="let label of labels">

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgeit.todo.notes.model.NoteRes;
 import com.bridgeit.todo.notes.model.Notes;
@@ -110,35 +112,15 @@ public class NoteController {
 			urlInfo = jsoupDemo.getUrlData(url);
 			urlData.add(urlInfo);
 		}
-		return urlData;
-		
+		return urlData;	
 	}
-
 	
-/*@RequestMapping(value = "/getUrls", method = RequestMethod.POST)
-public List<UrlData> getUrlInfo(@RequestBody List<String> urls,HttpServletRequest request)
-{
- 
-     LinkScrapper link=new LinkScrapper();
-     UrlData urlData=null;
-    List<UrlData> urlDatas = new ArrayList<>();
-     
-    for (String url : urls) 
- {
-   	System.out.println(urls);
-    try{
-   urlData = link.getMetaData(url);
-   urlDatas.add(urlData);
-
-} catch (IOException e) 
-   {
-e.printStackTrace();
-   }
-
- }
- return urlDatas;
-   }*/
-	
-	
+	@RequestMapping(value = "uploadimage",  method = RequestMethod.POST, headers= {"content-type=multipart/*"})
+	public ResponseEntity<String> FileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile fileUpload, @RequestParam int noteId)
+	throws Exception {
+	System.out.println("file name -- "+fileUpload.getOriginalFilename());
+	noteService.saveImage(fileUpload, noteId);
+	return new ResponseEntity<String>(HttpStatus.OK);
+	}
 
 }
