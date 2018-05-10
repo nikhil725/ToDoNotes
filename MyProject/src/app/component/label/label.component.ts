@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService, NoteService } from '../../service';
+import { UserService, NoteService, LabelService } from '../../service';
 import { Label } from '../../object/Label';
 
 
@@ -33,12 +33,12 @@ export class LabelComponent implements OnInit {
     this.showHide1 = !this.showHide1;
   }
 
-  constructor(private userService: UserService, private noteService: NoteService) { }
+  constructor(private userService: UserService, private noteService: NoteService,
+              private labelService: LabelService) { }
 
   ngOnInit() {
 
     this.noteService.getLabels().subscribe(res => {
-
       this.labels = res;
       console.log(this.labels);
     });
@@ -50,5 +50,11 @@ export class LabelComponent implements OnInit {
         console.log(" response Label  Created", response);
       });
   };
+
+  deleteLabel(labelId){
+
+    this.labelService.deleteLabel(labelId);
+    debugger;
+  }
 
 }

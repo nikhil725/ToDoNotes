@@ -67,16 +67,19 @@ public class LabelServiceImpl implements ILabelService {
 		noteDao.updateNote(note, note.getNoteId());
 	}
 
-	@Override
-	public void deleteLabel() {
-		// TODO Auto-generated method stub
-		
-		
-	}
+	
 
 	@Override
 	public void deleteLabelFromNote() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteLabel(int labelId, String token) {
+		
+		labelDao.deleteLabel(labelId);
 		
 	}
        

@@ -35,11 +35,8 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
     console.log('in get service');
     this.noteService.getNotes().subscribe(res => {
-      // this.notes = res;
-
+  
       this.notes = res.map(noteObj => {
-
-       // console.log("noteObj.discription",noteObj.description);
         if (this.urlFormat(noteObj.description))
           noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
             console.log(res);
@@ -48,9 +45,11 @@ export class NoteComponent implements OnInit {
            console.log(noteObj);
         return noteObj;
       })
+       this.notes.forEach(note=>{
+             note.imageString = 'data:image/jpg;base64,'+note.image;
+       })
+      
       console.log('notes..', this.notes);
-
-
     });
   }
 

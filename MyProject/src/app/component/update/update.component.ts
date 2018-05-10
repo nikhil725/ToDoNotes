@@ -10,8 +10,10 @@ import { UserService, NoteService, LabelService } from '../../service';
 })
 export class UpdateComponent implements OnInit {
 
+    note: UserNotes[];
+    
   constructor(@Inject(MAT_DIALOG_DATA)  public data: UserNotes, private commonService:UserService,
-public MatRef:MatDialogRef<UpdateComponent>) { }
+  public MatRef:MatDialogRef<UpdateComponent>) { }
 
   ngOnInit() {
     document.getElementById('update-title').innerHTML = this.data.title;

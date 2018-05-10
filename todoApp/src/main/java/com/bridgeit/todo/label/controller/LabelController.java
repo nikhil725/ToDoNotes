@@ -58,15 +58,14 @@ public class LabelController {
 			
 			return new ResponseEntity<List<Notes>>(HttpStatus.NO_CONTENT);
 		}
+	}
 		
-		}
-		
-	@RequestMapping(value = "/deleteLabel", method = RequestMethod.POST)
-	public ResponseEntity<Void> deleteLabel(@RequestBody Label label, HttpServletRequest request) {
-		System.out.println(label.getLabelId());
+	@RequestMapping(value = "deleteLabel/{labelId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteLabel(@PathVariable("labelId") int labelId, HttpServletRequest request) {
+		System.out.println("labelId.. "+labelId);
 		String token = request.getHeader("Authorization");
 		try {
-			//labelService.deleteLabel(label, token);
+			labelService.deleteLabel(labelId, token);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,21 +81,13 @@ public class LabelController {
 			
 			labelService.addLabel(noteId, labelId);
 			
-		}else if(!operation) {
+		}else if(!operation) {	
 			
 			labelService.deleteLabelFromNote();
 		}
-	
 		return null;
-			
-		
 	}
 		
-		
-	
-	
-	
-	
 /*	@RequestMapping(value = "/addLabelToNote/{noteId}/{labelId}/{operation}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addLabelToNote(@PathVariable("noteId") int noteId, @PathVariable("labelId") int labelId,
 			@PathVariable("operation") String operation, HttpServletRequest request) {

@@ -143,12 +143,12 @@
         <div fxLayout="row wrap">
 
           <!-- <app-common [note]="note"></app-common> -->
-          <div *ngIf="note.image">
-            <img [src]="note.imageString"/>
-            <mat-icon (click)="deleteImage(note)">close</mat-icon>
-          </div> 
+          
           <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
-
+        <div *ngIf="note.image">
+            <img class="image-class"[src]="note.imageString"/>
+            <!-- <mat-icon (click)="deleteImage(note)">close</mat-icon> -->
+          </div>
             <div style="margin-left: 90%;">
               <img src="{{pinSvg}}" (click)="updateNote(note,'true','pin')">
             </div>
@@ -160,7 +160,7 @@
 
             <mat-card-header>
               {{note.description}}
-            </mat-card-header>
+            </mat-card-header>  
             </div>
             <div *ngIf="note.labels!=null">
               <div *ngFor="let label of note.labels">

@@ -48,6 +48,15 @@ public class LabelDaoImpl implements ILabelDao {
 		Session session = mySessionFactory.getCurrentSession();
 		return (Label) session.get(Label.class, id);
 	}
+
+	@Override
+	public void deleteLabel(int labelId) {
+		Session session = mySessionFactory.getCurrentSession();
+		Label label = (Label) session.get(Label.class, labelId);
+		session.delete(label);
+		System.out.println("Record deleted Successfully");
+		
+	}
 	
 	/*public List<Label> getLabelsByNoteId(int noteId){
 		Session session = mySessionFactory.getCurrentSession();

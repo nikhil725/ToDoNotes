@@ -22,6 +22,7 @@ public class NoteRes {
 	private String collaboratorName;
 	private List<LabelRes> labels = new ArrayList<>();
 	private List<CollaboratorRes> collaborators = new ArrayList<>();
+	private byte[] image;
 
 	public NoteRes(Notes object) {
 
@@ -34,6 +35,7 @@ public class NoteRes {
 		this.color = object.getColor();
 		this.reminder = object.getReminder();
 		this.collaboratorName =object.getCollaboratorName();
+		this.image=object.getImage();
 		
 		for (Label label : object.getLabels()) {
 			labels.add(new LabelRes(label));
@@ -131,6 +133,14 @@ public class NoteRes {
 
 	public void setCollaboratorName(String collaboratorName) {
 		this.collaboratorName = collaboratorName;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 	
 	

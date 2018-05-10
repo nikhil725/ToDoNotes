@@ -85,9 +85,7 @@ export class NoteService {
     this.userService.putService1('addLabelOnNotes/' + noteId + '/' + labelId + '/' + operation)
       .subscribe(response => {
         console.log("successfull", response);
-
       });
-
   }
   getUrlData(model: any): Observable<HttpResponse<any>> {
 

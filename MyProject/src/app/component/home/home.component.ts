@@ -5,10 +5,6 @@ import { NoteService } from '../../service';
 import { Label } from '../../object/Label';
 import { Router } from '@angular/router';
 
-
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,16 +20,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log('in side home');
     this.noteService.getLabels().subscribe(res => {
-
       this.labels = res;
       console.log(this.labels);
     });
   }
 
-  openDialog() {
+  openDialog(label) {
     this.dialog.open(LabelComponent, {
+
       width: '400px',
-      height: '210px'
+      height: '210px',
+      data : {
+        labels : this.labels
+      }
     });
   }
   signOut(): void {
