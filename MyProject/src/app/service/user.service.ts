@@ -49,15 +49,15 @@ export class UserService {
   }
 
   getService(path): Observable<any> {
-
+    
     this.urlpath = this.rootUrl.concat(path);
     console.log(this.httpOptions);
     return this.http.get<UserNotes[]>(this.urlpath, this.httpOptions);
   }
+
   deleteService(path): Observable<any> {
 
     this.urlpath = this.rootUrl.concat(path);
-    debugger;
     return this.http.delete<any>(this.urlpath,this.httpOptions); 
   }
   

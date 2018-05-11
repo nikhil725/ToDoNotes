@@ -1,17 +1,21 @@
- <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
-
+<mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
+        <div *ngIf="note.image">
+            <img class="image-class"[src]="note.imageString"/>
+            <!-- <mat-icon (click)="deleteImage(note)">close</mat-icon> -->
+          </div>
             <div style="margin-left: 90%;">
-              <img src="{{pinSvg}}" (click)="updateNote(note,'true','pin')">
+              <img src="{{pinSvg}}" (click)="checkStatus(note,'true','pin')">
             </div>
 
+            <div (click)="openDialogForUpdate(note)">
             <mat-card-header>
               <b>{{note.title}}</b>
             </mat-card-header>
 
             <mat-card-header>
               {{note.description}}
-            </mat-card-header>
-            
+            </mat-card-header>  
+            </div>
             <div *ngIf="note.labels!=null">
               <div *ngFor="let label of note.labels">
                 <div fxLayout="row" fxLayoutGap="5px">
@@ -25,16 +29,27 @@
                 </div>
               </div>
             </div>
-
-            <div *ngIf="note.reminder!=null">
+            <div *ngIf="note.collaboratorName!=null">
+              <mat-chip-list>
+                <mat-chip>Shared from:{{note.collaboratorName}}</mat-chip>
+              </mat-chip-list>
+            </div>
+            <div mat-menu-item fxLayout="row">
+              <mat-chip-list>
+                <mat-chip color="primary" selected="true" class="matchip">
+                  <mat-icon style="color: #fafafa;">schedule</mat-icon>
+                  <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
+                  <img src="{{clearSvg}}" (click)="reminderUpdate(note,'null','reminder')">
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+            <!-- <div *ngIf="note.reminder!=null">
                <div mat-menu-item fxLayout="row" style="background-color:brown;">
               <div style="font-size: 12px;">
                 <label>{{note.reminder}}</label>
               </div>
-            </div> 
+            </div>  -->
 
-
-            </div>
             <div fxLayout="row wrap">
 
               <button mat-icon-button [matMenuTriggerFor]="reminder">
@@ -91,7 +106,7 @@
                 <button type="submit" mat-menu-item (click)="openDialog(note)">
                   <mat-icon>person_add</mat-icon>
                 </button>
-                
+
               </div>
 
               <div>
@@ -114,18 +129,27 @@
                 </mat-menu>
               </div>
 
+               <div>
+                <button mat-icon-button>
+                  <mat-icon for="file">photo</mat-icon>
+        
+                <input type="file" (change)="fileInput($event.target.files,note.noteId)">
+
+              </button>
+              </div>
+
               <div>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                  <mat-icon>more_vert</mat-icon>
                 </button>
 
                 <mat-menu #menu="matMenu">
-                  <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')">
+                  <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')"> -->
                   <!-- <mat-icon>delete</mat-icon> -->
                    <span>delete note</span> 
                 </button>
                   <!-- change label tag -->
-                   <div>
+                  <div>
                     <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getLabels()"> 
                   <span>change label</span>
                   </button>
@@ -158,8 +182,19 @@
                   </mat-menu>
                   <button type="submit" mat-menu-item>
                   <span>change labels</span>
-                </button> 
+                </button>
                 </mat-menu>
               </div>
             </div>
-          </mat-card> 
+            <div *ngFor="let linkObj of note.urlPromise | async" style="margin-left:-4vh;">
+              <div fxLayout="row" style="width:100px">
+                <div fxFlex="column" fxFlexAlign="start" style="margin-left:0">
+                  <img [src]="linkObj.url_Image" align='left' hspace='8' vspace='8' width='56px' height='56px'>
+                </div>
+                <div fxFlex="column" style="width:150px">
+                  <div style="word-wrap: break-word"><b> {{linkObj.url_Title|truncate:40}}</b></div>
+                  <div style="word-wrap: break-word">{{linkObj.url_Domain}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-card>

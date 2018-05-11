@@ -98,6 +98,9 @@ export class NoteService {
       console.log('image response', response);
   
     });
+  }
 
+  deleteImage(noteId): Observable<any>{
+    return this.userService.deleteService('deleteimage/'+ noteId);
   }
 }

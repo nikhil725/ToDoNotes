@@ -23,7 +23,7 @@ export class NoteComponent implements OnInit {
 
   urlRes: UrlResponse;
   notes: UserNotes[];
-  // colors : ColorList[];
+  //colors : ColorList[];
 
   pinSvg = '/assets/icons/pin.svg';
   unpinSvg = '/assets/icons/unpin.svg';
@@ -58,8 +58,8 @@ export class NoteComponent implements OnInit {
     this.dialog.open(UpdateComponent, {
       data: note,
 
-      width: '600px',
-      height: '150px'
+      width: '500px',
+      height: '350px'
     });
   }
 
