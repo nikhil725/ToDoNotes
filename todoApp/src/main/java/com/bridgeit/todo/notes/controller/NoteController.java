@@ -122,5 +122,10 @@ public class NoteController {
 	noteService.saveImage(fileUpload, noteId);
 	return new ResponseEntity<String>(HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "deleteimage/{noteId}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteImage(@PathVariable("noteId") int noteId){
+		System.out.println("noteId is.. "+noteId);
+		return null;
+	}
 }
