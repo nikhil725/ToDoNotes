@@ -12,4 +12,5 @@ public interface ILabelDao {
 	void addLableOnNote(int noteId, int labelId);
 	Label getLabelById(int id);
 	void deleteLabel(int labelId);
+	void deleteLabelOnNote(int labelId);
 }

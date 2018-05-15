@@ -42,7 +42,6 @@ public class LabelServiceImpl implements ILabelService {
 	@Transactional
 	@Override
 	public List<LabelRes> getLabels(int userId) {
-	
 		
 		List <Label> labels = null;
 		User user = userDao.getUserById(userId);
@@ -66,21 +65,21 @@ public class LabelServiceImpl implements ILabelService {
 		note.getLabels().add(label);
 		noteDao.updateNote(note, note.getNoteId());
 	}
-
 	
-
-	@Override
-	public void deleteLabelFromNote() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	@Transactional
 	public void deleteLabel(int labelId, String token) {
 		
 		labelDao.deleteLabel(labelId);
 		
+	}
+
+	@Override
+	public void deleteLabelFromNote(int noteId, int labelId) {
+		
+		Notes notes = noteDao.getNotebyNoteId(noteId);
+		
+		labelDao.deleteLabelOnNote(labelId);
 	}
        
      	}

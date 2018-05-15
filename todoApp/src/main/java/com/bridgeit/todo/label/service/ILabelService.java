@@ -11,7 +11,7 @@ public interface ILabelService {
 	List<LabelRes> getLabels(int userId);
 	public void addLabel(int noteId, int labelId);
 	public void deleteLabel(int labelId, String token);
-	public void deleteLabelFromNote();
+	public void deleteLabelFromNote(int noteId, int labelId);
 	
 	
 }

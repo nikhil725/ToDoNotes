@@ -83,7 +83,7 @@ public class LabelController {
 			
 		}else if(!operation) {	
 			
-			labelService.deleteLabelFromNote();
+			labelService.deleteLabelFromNote(noteId, labelId);
 		}
 		return null;
 	}

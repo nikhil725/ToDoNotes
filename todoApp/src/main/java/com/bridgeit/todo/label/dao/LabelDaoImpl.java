@@ -57,6 +57,13 @@ public class LabelDaoImpl implements ILabelDao {
 		System.out.println("Record deleted Successfully");
 		
 	}
+
+	@Override
+	public void deleteLabelOnNote(int labelId) {
+		
+		Session session = mySessionFactory.getCurrentSession();
+		
+	}
 	
 	/*public List<Label> getLabelsByNoteId(int noteId){
 		Session session = mySessionFactory.getCurrentSession();

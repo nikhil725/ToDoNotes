@@ -37,7 +37,7 @@ public class NoteController {
 	INoteService noteService;
 
 	@RequestMapping(value="createNotes", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> creatNotes(@RequestBody Notes notes,HttpServletRequest req){
+	public ResponseEntity<Notes> creatNotes(@RequestBody Notes notes,HttpServletRequest req){
 		
 		System.out.println("In side create Notes");
 		
@@ -45,7 +45,8 @@ public class NoteController {
 	//	User user=(User) req.getSession().getAttribute("nameid");
 	//	System.out.println("idddd"+user.getId());
 		noteService.createNote(notes, id);
-		return new ResponseEntity<String>("Notes saved...",HttpStatus.OK);
+		
+		return new ResponseEntity<Notes>(notes ,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="updateNotes", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
